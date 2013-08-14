@@ -748,15 +748,23 @@ class JImage
 
 		// Copy the image
 		imagecopy($handle, $this->handle, 0, 0, 0, 0, $this->getWidth(), $this->getHeight());
+		if (version_compare(PHP_VERSION, '5.5', '>='))
+		{
+			var_dump($handle);
+		}
 
 		// Rotate the image
-		$handle = imagerotate($handle, $angle, $background);
+		$image = imagerotate($handle, $angle, $background);
 
+		if (version_compare(PHP_VERSION, '5.5', '>='))
+		{
+			var_dump($image);
+		}
 		// If we are resizing to a new image, create a new JImage object.
 		if ($createNew)
 		{
 			// @codeCoverageIgnoreStart
-			$new = new JImage($handle);
+			$new = new JImage($image);
 
 			return $new;
 
@@ -767,8 +775,9 @@ class JImage
 		{
 			// Free the memory from the current handle
 			$this->destroy();
+			imagedestroy($handle);
 
-			$this->handle = $handle;
+			$this->handle = $image;
 
 			return $this;
 		}

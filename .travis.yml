@@ -16,7 +16,7 @@ before_script:
   - psql -d joomla_ut -a -f tests/unit/suites/database/stubs/postgresql.sql
 
 script:
-  - phpunit --configuration travisci-phpunit.xml
+  - phpunit --configuration travisci-phpunit.xml tests/unit/suites/libraries/joomla/image/JImageTest.php
 
 branches:
   except:
