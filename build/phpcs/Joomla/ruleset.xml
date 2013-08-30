@@ -162,6 +162,22 @@
   <exclude-pattern type="relative">modules/*</exclude-pattern>
  </rule>
 
+ <rule ref="Joomla.WhiteSpace.ControlStructureSpacing">
+  <!-- We only want this for libraries, language, installation, and cli for now -->
+  <exclude-pattern type="relative">administrator/components/*</exclude-pattern>
+  <exclude-pattern type="relative">administrator/includes/application.php</exclude-pattern>
+  <exclude-pattern type="relative">administrator/includes/framework.php</exclude-pattern>
+  <exclude-pattern type="relative">components/*</exclude-pattern>
+  <exclude-pattern type="relative">plugins/*</exclude-pattern>
+  <exclude-pattern type="relative">modules/*</exclude-pattern>
+  <exclude-pattern type="relative">includes/*</exclude-pattern>
+	 <!-- These exceptions are permanent -->
+  <exclude-pattern type="relative">*/tmpl/*</exclude-pattern>
+  <exclude-pattern type="relative">templates/*</exclude-pattern>
+  <exclude-pattern type="relative">layouts/*</exclude-pattern>
+  <exclude-pattern type="relative">installation/template/index.php</exclude-pattern>
+ </rule>
+
  <rule ref="Joomla.WhiteSpace.ConcatenationSpacing">
   <!-- We only want this for libraries, language and cli for now -->
   <exclude-pattern type="relative">administrator/components/*</exclude-pattern>
