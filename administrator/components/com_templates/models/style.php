@@ -58,15 +58,17 @@ class TemplatesModelStyle extends JModelAdmin
 	/**
 	 * Method to delete rows.
 	 *
-	 * @param   array  An array of item ids.
+	 * @param   array &$pks  An array of record primary keys.
 	 *
-	 * @return  boolean  Returns true on success, false on failure.
+	 * @return  boolean  True if successful, false if an error occurs.
+	 *
+	 * @throws  Exception
 	 */
 	public function delete(&$pks)
 	{
-		$pks	= (array) $pks;
-		$user	= JFactory::getUser();
-		$table	= $this->getTable();
+		$pks   = (array) $pks;
+		$user  = JFactory::getUser();
+		$table = $this->getTable();
 
 		// Iterate the items to delete each one.
 		foreach ($pks as $pk)
@@ -78,20 +80,26 @@ class TemplatesModelStyle extends JModelAdmin
 				{
 					throw new Exception(JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
 				}
+
 				// You should not delete a default style
-				if ($table->home != '0'){
+				if ($table->home != '0')
+				{
 					JError::raiseWarning(SOME_ERROR_NUMBER, Jtext::_('COM_TEMPLATES_STYLE_CANNOT_DELETE_DEFAULT_STYLE'));
+
 					return false;
 				}
 
 				if (!$table->delete($pk))
 				{
 					$this->setError($table->getError());
+
 					return false;
 				}
 			}
-			else {
+			else
+			{
 				$this->setError($table->getError());
+
 				return false;
 			}
 		}
@@ -299,21 +307,28 @@ class TemplatesModelStyle extends JModelAdmin
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param   type	The table type to instantiate
-	 * @param   string	A prefix for the table class name. Optional.
-	 * @param   array  Configuration array for model. Optional.
-	 * @return  JTable	A database object
-	*/
+	 * @param   string  $type     The table name. Optional.
+	 * @param   string  $prefix   The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
+	 *
+	 * @return  JTable  A JTable object
+	 */
 	public function getTable($type = 'Style', $prefix = 'TemplatesTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
 
 	/**
-	 * @param   object	A form object.
-	 * @param   mixed	The data expected for the form.
-	 * @throws	Exception if there is an error in the form event.
+	 * Method to allow derived classes to preprocess the form.
+	 *
+	 * @param   JForm   $form   A JForm object.
+	 * @param   mixed   $data   The data expected for the form.
+	 * @param   string  $group  The name of the plugin group to import (defaults to "content").
+	 *
+	 * @return  void
+	 *
 	 * @since   1.6
+	 * @throws	Exception if there is an error in the form event.
 	 */
 	protected function preprocessForm(JForm $form, $data, $group = 'content')
 	{

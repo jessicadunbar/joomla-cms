@@ -134,12 +134,12 @@ class JSchemaChangeset
 	}
 
 	/**
-	* Returns an array of results for this set
-	*
-	* @return  array  associative array of changeitems grouped by unchecked, ok, error, and skipped
-	*
-	* @since   2.5
-	*/
+	 * Returns an array of results for this set
+	 *
+	 * @return  array  associative array of changeitems grouped by unchecked, ok, error, and skipped
+	 *
+	 * @since   2.5
+	 */
 	public function getStatus()
 	{
 		$result = array('unchecked' => array(), 'ok' => array(), 'error' => array(), 'skipped' => array());

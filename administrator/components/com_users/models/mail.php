@@ -57,10 +57,14 @@ class UsersModelMail extends JModelAdmin
 	/**
 	 * Override preprocessForm to load the user plugin group instead of content.
 	 *
-	 * @param   object	A form object.
-	 * @param   mixed	The data expected for the form.
-	 * @throws	Exception if there is an error in the form event.
+	 * @param   JForm   $form   A JForm object.
+	 * @param   mixed   $data   The data expected for the form.
+	 * @param   string  $group  The name of the plugin group to import (defaults to "content").
+	 *
+	 * @return  void
+	 *
 	 * @since   1.6
+	 * @throws	Exception if there is an error in the form event.
 	 */
 	protected function preprocessForm(JForm $form, $data, $group = 'user')
 	{

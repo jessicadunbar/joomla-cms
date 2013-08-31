@@ -280,16 +280,16 @@ abstract class ModArticlesCategoryHelper
 	}
 
 	/**
-	* Method to truncate introtext
-	*
-	* The goal is to get the proper length plain text string with as much of
-	* the html intact as possible with all tags properly closed.
-	*
-	* @param string   $html       The content of the introtext to be truncated
-	* @param integer  $maxLength  The maximum number of charactes to render
-	*
-	* @return  string  The truncated string
-	*/
+	 * Method to truncate introtext
+	 *
+	 * The goal is to get the proper length plain text string with as much of
+	 * the html intact as possible with all tags properly closed.
+	 *
+	 * @param string   $html       The content of the introtext to be truncated
+	 * @param integer  $maxLength  The maximum number of charactes to render
+	 *
+	 * @return  string  The truncated string
+	 */
 	public static function truncate($html, $maxLength = 0)
 	{
 		$baseLength = strlen($html);

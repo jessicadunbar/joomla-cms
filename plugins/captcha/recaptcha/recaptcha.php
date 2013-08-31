@@ -36,15 +36,13 @@ class PlgCaptchaRecaptcha extends JPlugin
 	 *
 	 * @param   string  $id  The id of the field.
 	 *
-	 * @return  Boolean	True on success, false otherwise
+	 * @return  boolean  True on success, false otherwise
 	 *
-	 * @since  2.5
+	 * @since   2.5
+	 * @throws  Exception
 	 */
 	public function onInit($id)
 	{
-		$document = JFactory::getDocument();
-		$app      = JFactory::getApplication();
-
 		$lang   = $this->_getLanguage();
 		$pubkey = $this->params->get('public_key', '');
 		$theme  = $this->params->get('theme', 'clean');
@@ -56,13 +54,13 @@ class PlgCaptchaRecaptcha extends JPlugin
 
 		$server = self::RECAPTCHA_API_SERVER;
 
-		if ($app->isSSLConnection())
+		if (JFactory::getApplication()->isSSLConnection())
 		{
 			$server = self::RECAPTCHA_API_SECURE_SERVER;
 		}
 
 		JHtml::_('script', $server . '/js/recaptcha_ajax.js');
-		$document->addScriptDeclaration('window.addEvent(\'domready\', function()
+		JFactory::getDocument()->addScriptDeclaration('window.addEvent(\'domready\', function()
 		{
 			Recaptcha.create("' . $pubkey . '", "dynamic_recaptcha_1", {theme: "' . $theme . '",' . $lang . 'tabindex: 0});});'
 		);
@@ -87,12 +85,12 @@ class PlgCaptchaRecaptcha extends JPlugin
 	}
 
 	/**
-	  * Calls an HTTP POST function to verify if the user's guess was correct
-	  *
-	  * @return  True if the answer is correct, false otherwise
-	  *
-	  * @since  2.5
-	  */
+	 * Calls an HTTP POST function to verify if the user's guess was correct
+	 *
+	 * @return  True if the answer is correct, false otherwise
+	 *
+	 * @since   2.5
+	 */
 	public function onCheckAnswer($code)
 	{
 		$input      = JFactory::getApplication()->input;

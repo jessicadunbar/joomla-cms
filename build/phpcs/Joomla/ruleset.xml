@@ -24,6 +24,8 @@
 
 	<!-- Include some additional sniffs from the Generic standard -->
 	<!-- Use Unix newlines -->
+	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+	<rule ref="Generic.Files.EndFileNewline" />
 	<rule ref="Generic.Files.LineEndings">
 		<properties>
 			<property name="eolChar" value="\n" />
@@ -59,6 +61,7 @@
 	<rule ref="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma">
 		<severity>0</severity>
 	</rule>
+	<rule ref="Generic.NamingConventions.ConstructorName" />
 	<rule ref="Generic.NamingConventions.UpperCaseConstantName" />
 	<rule ref="Generic.PHP.DisallowShortOpenTag" />
 	<rule ref="Generic.PHP.DeprecatedFunctions" />
@@ -82,6 +85,7 @@
 
 	<!-- Include some additional sniffs from the Squiz standard -->
 	<rule ref="Squiz.Classes.SelfMemberReference" />
+	<rule ref="Squiz.Commenting.DocCommentAlignment" />
 	<rule ref="Squiz.Operators.IncrementDecrementUsage">
 		<exclude name="Squiz.Operators.IncrementDecrementUsage.processAssignment" />
 		<!-- These exceptions are temporary -->

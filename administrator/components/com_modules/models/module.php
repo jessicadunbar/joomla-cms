@@ -743,14 +743,14 @@ class ModulesModelModule extends JModelAdmin
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param   string  $type    The table type to instantiate
-	 * @param   string  $prefix  A prefix for the table class name. Optional.
+	 * @param   string  $type    The table name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  JTable  A database object
+	 * @return  JTable  A JTable object
 	 *
 	 * @since   1.6
-	*/
+	 */
 	public function getTable($type = 'Module', $prefix = 'JTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);

@@ -27,19 +27,19 @@ class JUcmType implements JUcm
 	public $type;
 
 	/**
-	* The Database object
-	*
-	* @var    JDatabaseDriver
-	* @since  3.1
-	*/
+	 * The Database object
+	 *
+	 * @var    JDatabaseDriver
+	 * @since  3.1
+	 */
 	protected $db;
 
 	/**
-	* The alias for the content type
-	*
-	* @var	  string
-	* @since  3.1
-	*/
+	 * The alias for the content type
+	 *
+	 * @var	  string
+	 * @since  3.1
+	 */
 	protected $alias;
 
 	/**
@@ -62,14 +62,14 @@ class JUcmType implements JUcm
 	}
 
 	/**
-	* Get the Content Type
-	*
-	* @param   integer  $pk  The primary key of the alias type
-	*
-	* @return  object  The UCM Type data
-	*
-	* @since   3.1
-	*/
+	 * Get the Content Type
+	 *
+	 * @param   integer  $pk  The primary key of the alias type
+	 *
+	 * @return  object  The UCM Type data
+	 *
+	 * @since   3.1
+	 */
 	public function getType($pk = null)
 	{
 		if (!$pk)

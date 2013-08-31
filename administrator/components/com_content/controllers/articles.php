@@ -22,9 +22,8 @@ class ContentControllerArticles extends JControllerAdmin
 	 * Constructor.
 	 *
 	 * @param   array  $config	An optional associative array of configuration settings.
-
-	 * @return  ContentControllerArticles
-	 * @see     JController
+	 *
+	 * @see     JControllerLegacy
 	 * @since   1.6
 	 */
 	public function __construct($config = array())
@@ -45,6 +44,7 @@ class ContentControllerArticles extends JControllerAdmin
 	 * Method to toggle the featured setting of a list of articles.
 	 *
 	 * @return  void
+	 *
 	 * @since   1.6
 	 */
 	public function featured()
@@ -91,32 +91,16 @@ class ContentControllerArticles extends JControllerAdmin
 	/**
 	 * Proxy for getModel.
 	 *
-	 * @param   string	$name	The name of the model.
-	 * @param   string	$prefix	The prefix for the PHP class name.
+	 * @param   string  $name    The model name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  JModel
+	 * @return  JModelLegacy
+	 *
 	 * @since   1.6
 	 */
 	public function getModel($name = 'Article', $prefix = 'ContentModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, $config);
-
-		return $model;
+		return parent::getModel($name, $prefix, $config);
 	}
-
-	/**
-	 * Function that allows child controller access to model data
-	 * after the item has been deleted.
-	 *
-	 * @param   JModelLegacy  $model  The data model object.
-	 * @param   integer       $ids    The array of ids for items being deleted.
-	 *
-	 * @return  void
-	 *
-	 * @since   12.2
-	 */
-	protected function postDeleteHook(JModelLegacy $model, $ids = null)
-	{
-	}
-
 }

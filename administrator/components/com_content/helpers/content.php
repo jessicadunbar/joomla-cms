@@ -94,7 +94,7 @@ class ContentHelper
 	 * @return  string  The filtered string
 	 *
 	 * @deprecated  4.0  Use JComponentHelper::filterText() instead.
-	*/
+	 */
 	public static function filterText($text)
 	{
 		JLog::add('ContentHelper::filterText() is deprecated. Use JComponentHelper::filterText() instead.', JLog::WARNING, 'deprecated');

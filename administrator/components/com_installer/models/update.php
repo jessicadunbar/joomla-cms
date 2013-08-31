@@ -333,15 +333,15 @@ class InstallerModelUpdate extends JModelList
 	}
 
 	/**
-	* Method to get the row form.
-	*
-	* @param   array    $data      Data for the form.
-	* @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
-	*
-	* @return  mixed  A JForm object on success, false on failure
-	*
-	* @since	2.5.2
-	*/
+	 * Method to get the row form.
+	 *
+	 * @param   array    $data      Data for the form.
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
+	 *
+	 * @return  mixed  A JForm object on success, false on failure
+	 *
+	 * @since	2.5.2
+	 */
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.

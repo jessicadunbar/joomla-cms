@@ -21,8 +21,8 @@ require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/content.php';
 class ContentModelArticle extends JModelAdmin
 {
 	/**
-	 * @var        string    The prefix to use with controller messages.
-	 * @since   1.6
+	 * @var    string  The prefix to use with controller messages.
+	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_CONTENT';
 
@@ -35,7 +35,7 @@ class ContentModelArticle extends JModelAdmin
 	 *
 	 * @return  mixed  An array of new IDs on success, boolean false on failure.
 	 *
-	 * @since   11.1
+	 * @since   1.7
 	 */
 	protected function batchCopy($value, $pks, $contexts)
 	{
@@ -163,9 +163,10 @@ class ContentModelArticle extends JModelAdmin
 	/**
 	 * Method to test whether a record can be deleted.
 	 *
-	 * @param   object    $record    A record object.
+	 * @param   object  $record  A record object.
 	 *
 	 * @return  boolean  True if allowed to delete the record. Defaults to the permission set in the component.
+	 *
 	 * @since   1.6
 	 */
 	protected function canDelete($record)
@@ -187,6 +188,7 @@ class ContentModelArticle extends JModelAdmin
 	 * @param   object    $record    A record object.
 	 *
 	 * @return  boolean  True if allowed to change the state of the record. Defaults to the permission set in the component.
+	 *
 	 * @since   1.6
 	 */
 	protected function canEditState($record)
@@ -213,9 +215,10 @@ class ContentModelArticle extends JModelAdmin
 	/**
 	 * Prepare and sanitise the table data prior to saving.
 	 *
-	 * @param   JTable    A JTable object.
+	 * @param   JTable  $table  A JTable object.
 	 *
 	 * @return  void
+	 *
 	 * @since   1.6
 	 */
 	protected function prepareTable($table)
@@ -245,11 +248,11 @@ class ContentModelArticle extends JModelAdmin
 	/**
 	 * Returns a Table object, always creating it.
 	 *
-	 * @param   type      The table type to instantiate
-	 * @param   string    A prefix for the table class name. Optional.
-	 * @param   array     Configuration array for model. Optional.
+	 * @param   string  $type    The table name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  JTable    A database object
+	 * @return  JTable  A JTable object
 	 */
 	public function getTable($type = 'Content', $prefix = 'JTable', $config = array())
 	{
@@ -325,6 +328,7 @@ class ContentModelArticle extends JModelAdmin
 	 * @param   boolean    $loadData    True if the form is to load its own data (default case), false if not.
 	 *
 	 * @return  mixed  A JForm object on success, false on failure
+	 *
 	 * @since   1.6
 	 */
 	public function getForm($data = array(), $loadData = true)
@@ -405,6 +409,7 @@ class ContentModelArticle extends JModelAdmin
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return  mixed  The data for the form.
+	 *
 	 * @since   1.6
 	 */
 	protected function loadFormData()
@@ -435,6 +440,7 @@ class ContentModelArticle extends JModelAdmin
 	 * @param   array  The form data.
 	 *
 	 * @return  boolean  True on success.
+	 *
 	 * @since   1.6
 	 */
 	public function save($data)
@@ -644,9 +650,10 @@ class ContentModelArticle extends JModelAdmin
 	/**
 	 * A protected method to get a set of ordering conditions.
 	 *
-	 * @param   object    A record object.
+	 * @param   JTable  $table  A JTable object.
 	 *
-	 * @return  array  An array of conditions to add to add to ordering queries.
+	 * @return  array  An array of conditions to add to ordering queries.
+	 *
 	 * @since   1.6
 	 */
 	protected function getReorderConditions($table)
@@ -659,10 +666,13 @@ class ContentModelArticle extends JModelAdmin
 	/**
 	 * Auto-populate the model state.
 	 *
-	 * Note. Calling getState in this method will result in recursion.
+	 * @param   JForm   $form   A JForm object.
+	 * @param   mixed   $data   The data expected for the form.
+	 * @param   string  $group  The name of the plugin group to import (defaults to "content").
 	 *
 	 * @return  void
-	 * @since    3.0
+	 *
+	 * @since   3.0
 	 */
 	protected function preprocessForm(JForm $form, $data, $group = 'content')
 	{
@@ -709,6 +719,11 @@ class ContentModelArticle extends JModelAdmin
 
 	/**
 	 * Custom clean the cache of com_content and content modules
+	 *
+	 * @param   string   $group      The cache group
+	 * @param   integer  $client_id  The ID of the client
+	 *
+	 * @return  void
 	 *
 	 * @since   1.6
 	 */

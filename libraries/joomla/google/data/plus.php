@@ -19,21 +19,21 @@ defined('JPATH_PLATFORM') or die;
 class JGoogleDataPlus extends JGoogleData
 {
 	/**
-	* @var    JGoogleDataPlusPeople  Google+ API object for people.
-	* @since  12.3
-	*/
+	 * @var    JGoogleDataPlusPeople  Google+ API object for people.
+	 * @since  12.3
+	 */
 	protected $people;
 
 	/**
-	* @var    JGoogleDataPlusActivities  Google+ API object for people.
-	* @since  12.3
-	*/
+	 * @var    JGoogleDataPlusActivities  Google+ API object for people.
+	 * @since  12.3
+	 */
 	protected $activities;
 
 	/**
-	* @var    JGoogleDataPlusComments  Google+ API object for people.
-	* @since  12.3
-	*/
+	 * @var    JGoogleDataPlusComments  Google+ API object for people.
+	 * @since  12.3
+	 */
 	protected $comments;
 
 	/**

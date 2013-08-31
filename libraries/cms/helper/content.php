@@ -91,14 +91,14 @@ class JHelperContent
 	}
 
 	/**
-	* Gets the associated language ID
-	*
-	* @param   string  $langCode  The language code to look up
-	*
-	* @return  integer  The language ID
-	*
-	* @since   3.1
-	*/
+	 * Gets the associated language ID
+	 *
+	 * @param   string  $langCode  The language code to look up
+	 *
+	 * @return  integer  The language ID
+	 *
+	 * @since   3.1
+	 */
 	public static function getLanguageId($langCode)
 	{
 		$db    = JFactory::getDbo();

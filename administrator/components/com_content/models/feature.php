@@ -16,17 +16,21 @@ require_once __DIR__ . '/article.php';
  *
  * @package     Joomla.Administrator
  * @subpackage  com_content
+ * @since       1.6
  */
 class ContentModelFeature extends ContentModelArticle
 {
 	/**
 	 * Returns a Table object, always creating it.
 	 *
-	 * @param   type	The table type to instantiate
-	 * @param   string	A prefix for the table class name. Optional.
-	 * @param   array  Configuration array for model. Optional.
-	 * @return  JTable	A database object
-	*/
+	 * @param   string  $type    The table name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
+	 *
+	 * @return  JTable  A JTable object
+	 *
+	 * @since   1.6
+	 */
 	public function getTable($type = 'Featured', $prefix = 'ContentTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
@@ -35,13 +39,14 @@ class ContentModelFeature extends ContentModelArticle
 	/**
 	 * A protected method to get a set of ordering conditions.
 	 *
-	 * @param   object	A record object.
-	 * @return  array  An array of conditions to add to add to ordering queries.
+	 * @param   JTable  $table  A JTable object.
+	 *
+	 * @return  array  An array of conditions to add to ordering queries.
+	 *
 	 * @since   1.6
 	 */
 	protected function getReorderConditions($table)
 	{
-		$condition = array();
-		return $condition;
+		return array();
 	}
 }

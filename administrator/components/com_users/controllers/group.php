@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
  */
 class UsersControllerGroup extends JControllerForm
 {
-		/**
+	/**
 	 * @var		string	The prefix to use with controller messages.
 	 * @since   1.6
 	 */

@@ -33,12 +33,14 @@ class UsersModelGroup extends JModelAdmin
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param   type	The table type to instantiate
-	 * @param   string	A prefix for the table class name. Optional.
-	 * @param   array  Configuration array for model. Optional.
-	 * @return  JTable	A database object
+	 * @param   string  $type    The table name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
+	 *
+	 * @return  JTable  A JTable object
+	 *
 	 * @since   1.6
-	*/
+	 */
 	public function getTable($type = 'Usergroup', $prefix = 'JTable', $config = array())
 	{
 		$return = JTable::getInstance($type, $prefix, $config);
@@ -89,10 +91,14 @@ class UsersModelGroup extends JModelAdmin
 	/**
 	 * Override preprocessForm to load the user plugin group instead of content.
 	 *
-	 * @param   object	A form object.
-	 * @param   mixed	The data expected for the form.
-	 * @throws	Exception if there is an error in the form event.
+	 * @param   JForm   $form    A JForm object.
+	 * @param   mixed   $data    The data expected for the form.
+	 * @param   string  $groups  The name of the plugin group to import (defaults to "content").
+	 *
+	 * @return  void
+	 *
 	 * @since   1.6
+	 * @throws	Exception if there is an error in the form event.
 	 */
 	protected function preprocessForm(JForm $form, $data, $groups = '')
 	{

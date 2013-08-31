@@ -14,15 +14,14 @@ defined('JPATH_PLATFORM') or die();
  *
  * @package     Joomla.Platform
  * @subpackage  Twitter
- *
  * @since       12.3
  */
 class JTwitterOAuth extends JOAuth1Client
 {
 	/**
-	* @var JRegistry Options for the JTwitterOauth object.
-	* @since 12.3
-	*/
+	 * @var    JRegistry Options for the JTwitterOauth object.
+	 * @since  12.3
+	 */
 	protected $options;
 
 	/**
@@ -33,7 +32,7 @@ class JTwitterOAuth extends JOAuth1Client
 	 * @param   JInput           $input        The input object.
 	 * @param   JApplicationWeb  $application  The application object.
 	 *
-	 * @since 12.3
+	 * @since   12.3
 	 */
 	public function __construct(JRegistry $options = null, JHttp $client = null, JInput $input = null, JApplicationWeb $application = null)
 	{
@@ -110,8 +109,8 @@ class JTwitterOAuth extends JOAuth1Client
 	 *
 	 * @return  void
 	 *
-	 * @since  12.3
-	 * @throws DomainException
+	 * @since   12.3
+	 * @throws  DomainException
 	 */
 	public function validateResponse($url, $response)
 	{

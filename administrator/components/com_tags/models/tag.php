@@ -41,22 +41,9 @@ class TagsModelTag extends JModelAdmin
 			{
 				return;
 			}
+
 			return parent::canDelete($record);
 		}
-	}
-
-	/**
-	 * Method to test whether a record can have its state changed.
-	 *
-	 * @param   object  $record  A record object.
-	 *
-	 * @return  boolean  True if allowed to change the state of the record. Defaults to the permission set in the component.
-	 *
-	 * @since   3.1
-	 */
-	protected function canEditState($record)
-	{
-		return parent::canEditState($record);
 	}
 
 	/**
@@ -69,7 +56,7 @@ class TagsModelTag extends JModelAdmin
 	 * @return  JTable  A JTable object
 	 *
 	 * @since   3.1
-	*/
+	 */
 	public function getTable($type = 'Tag', $prefix = 'TagsTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
@@ -113,7 +100,6 @@ class TagsModelTag extends JModelAdmin
 	{
 		if ($result = parent::getItem($pk))
 		{
-
 			// Prime required properties.
 			if (empty($result->id))
 			{
@@ -221,25 +207,6 @@ class TagsModelTag extends JModelAdmin
 		$this->preprocessData('com_tags.tag', $data);
 
 		return $data;
-	}
-
-	/**
-	 * Method to preprocess the form.
-	 *
-	 * @param   JForm   $form   A JForm object.
-	 * @param   mixed   $data   The data expected for the form.
-	 * @param   string  $group  The name of the plugin group to import.
-	 *
-	 * @return  void
-	 *
-	 * @see     JFormField
-	 * @since   3.1
-	 * @throws  Exception if there is an error in the form event.
-	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'content')
-	{
-		// Trigger the default form events.
-		parent::preprocessForm($form, $data, $group);
 	}
 
 	/**
@@ -394,7 +361,7 @@ class TagsModelTag extends JModelAdmin
 	 * @return  boolean  False on failure or error, True otherwise
 	 *
 	 * @since   3.1
-	*/
+	 */
 	public function saveorder($idArray = null, $lft_array = null)
 	{
 		// Get an instance of the table object.
@@ -427,6 +394,7 @@ class TagsModelTag extends JModelAdmin
 	{
 		// Alter the title & alias
 		$table = $this->getTable();
+
 		while ($table->load(array('alias' => $alias, 'parent_id' => $parent_id)))
 		{
 			$title = ($table->title != $title) ? $title : JString::increment($title);
