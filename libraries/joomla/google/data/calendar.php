@@ -44,7 +44,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  boolean  Success or failure
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function removeCalendar($calendarID)
 	{
@@ -56,6 +56,7 @@ class JGoogleDataCalendar extends JGoogleData
 			{
 				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 			}
+
 			return true;
 		}
 		else
@@ -72,7 +73,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function getCalendar($calendarID)
 	{
@@ -104,7 +105,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function addCalendar($calendarID, $options = array())
 	{
@@ -138,7 +139,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function listCalendars($options = array(), $maxpages = 1)
 	{
@@ -165,7 +166,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function editCalendarSettings($calendarID, $options)
 	{
@@ -197,7 +198,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  boolean  Success or failure
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function clearCalendar($calendarID)
 	{
@@ -209,6 +210,7 @@ class JGoogleDataCalendar extends JGoogleData
 			{
 				throw new UnexpectedValueException("Unexpected data received from Google: `{$data->body}`.");
 			}
+
 			return true;
 		}
 		else
@@ -225,7 +227,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  boolean  Success or failure
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function deleteCalendar($calendarID)
 	{
@@ -237,6 +239,7 @@ class JGoogleDataCalendar extends JGoogleData
 			{
 				throw new UnexpectedValueException("Unexpected data received from Google: `{$data->body}`.");
 			}
+
 			return true;
 		}
 		else
@@ -254,7 +257,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function createCalendar($title, $options = array())
 	{
@@ -322,7 +325,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  boolean  Success or failure.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function deleteEvent($calendarID, $eventID)
 	{
@@ -335,6 +338,7 @@ class JGoogleDataCalendar extends JGoogleData
 			{
 				throw new UnexpectedValueException("Unexpected data received from Google: `{$data->body}`.");
 			}
+
 			return true;
 		}
 		else
@@ -353,7 +357,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function getEvent($calendarID, $eventID, $options = array())
 	{
@@ -392,8 +396,8 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws InvalidArgumentException
-	 * @throws UnexpectedValueException
+	 * @throws  InvalidArgumentException
+	 * @throws  UnexpectedValueException
 	 */
 	public function createEvent($calendarID, $start, $end = false, $options = array(), $timezone = false, $allday = false, $notify = false)
 	{
@@ -499,7 +503,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function listRecurrences($calendarID, $eventID, $options = array(), $maxpages = 1)
 	{
@@ -528,7 +532,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function listEvents($calendarID, $options = array(), $maxpages = 1)
 	{
@@ -557,7 +561,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function moveEvent($calendarID, $eventID, $destID, $notify = false)
 	{
@@ -593,7 +597,7 @@ class JGoogleDataCalendar extends JGoogleData
 	 * @return  mixed  Data from Google.
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function editEvent($calendarID, $eventID, $options, $notify = false)
 	{

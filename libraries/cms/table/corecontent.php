@@ -144,6 +144,7 @@ class JTableCorecontent extends JTable
 					$clean_keys[] = trim($key);
 				}
 			}
+
 			// Put array back together delimited by ", "
 			$this->core_metakey = implode(", ", $clean_keys);
 		}
@@ -164,6 +165,7 @@ class JTableCorecontent extends JTable
 	public function delete($pk = null)
 	{
 		$baseTable = JTable::getInstance('Ucm');
+
 		return parent::delete($pk) && $baseTable->delete($pk);
 	}
 
@@ -190,6 +192,7 @@ class JTableCorecontent extends JTable
 			->from($db->quoteName('#__ucm_content'))
 			->where($db->quoteName('core_content_item_id') . ' = ' . (int) $contentItemId);
 		$db->setQuery($query);
+
 		if ($ucmId = $db->loadResult())
 		{
 			return $this->delete($ucmId);
@@ -236,10 +239,10 @@ class JTableCorecontent extends JTable
 			}
 
 			$isNew = true;
-
 		}
 
 		$oldRules = $this->getRules();
+
 		if (empty($oldRules))
 		{
 			$this->setRules('{}');
@@ -341,11 +344,13 @@ class JTableCorecontent extends JTable
 
 		// Determine if there is checkin support for the table.
 		$checkin = false;
+
 		if (property_exists($this, 'core_checked_out_user_id') && property_exists($this, 'core_checked_out_time'))
 		{
 			$checkin = true;
 			$query->where(' (' . $this->_db->quoteName('core_checked_out_user_id') . ' = 0 OR ' . $this->_db->quoteName('core_checked_out_user_id') . ' = ' . (int) $userId . ')');
 		}
+
 		$this->_db->setQuery($query);
 
 		try

@@ -18,7 +18,6 @@ defined('JPATH_PLATFORM') or die;
  */
 class JMediawikiImages extends JMediawikiObject
 {
-
 	/**
      * Method to get all images contained on the given page(s).
      *
@@ -222,6 +221,7 @@ class JMediawikiImages extends JMediawikiObject
 		{
 			$path .= '&aidir=' . $aidir;
 		}
+
 		if (isset($aisha1))
 		{
 			$path .= '&aisha1=' . $aisha1;

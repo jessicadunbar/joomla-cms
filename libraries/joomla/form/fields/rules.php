@@ -32,11 +32,10 @@ class JFormFieldRules extends JFormField
 	 * Method to get the field input markup for Access Control Lists.
 	 * Optionally can be associated with a specific component and section.
 	 *
-	 * TODO: Add access check.
-	 *
 	 * @return  string  The field input markup.
 	 *
 	 * @since   11.1
+	 * @todo    Add access check.
 	 */
 	protected function getInput()
 	{
@@ -106,10 +105,12 @@ class JFormFieldRules extends JFormField
 
 		// Building tab nav
 		$html[] = '<ul class="nav nav-tabs">';
+
 		foreach ($groups as $group)
 		{
 			// Initial Active Tab
 			$active = "";
+
 			if ($group->value == 1)
 			{
 				$active = "active";
@@ -121,6 +122,7 @@ class JFormFieldRules extends JFormField
 			$html[] = '</a>';
 			$html[] = '</li>';
 		}
+
 		$html[] = '</ul>';
 
 		$html[] = '<div class="tab-content">';
@@ -130,6 +132,7 @@ class JFormFieldRules extends JFormField
 		{
 			// Initial Active Pane
 			$active = "";
+
 			if ($group->value == 1)
 			{
 				$active = " active";
@@ -268,12 +271,12 @@ class JFormFieldRules extends JFormField
 
 			$html[] = '</tbody>';
 			$html[] = '</table></div>';
-
 		}
 
 		$html[] = '</div></div>';
 
 		$html[] = '<div class="alert">';
+
 		if ($section == 'component' || $section == null)
 		{
 			$html[] = JText::_('JLIB_RULES_SETTING_NOTES');
@@ -282,6 +285,7 @@ class JFormFieldRules extends JFormField
 		{
 			$html[] = JText::_('JLIB_RULES_SETTING_NOTES_ITEM');
 		}
+
 		$html[] = '</div>';
 
 		return implode("\n", $html);

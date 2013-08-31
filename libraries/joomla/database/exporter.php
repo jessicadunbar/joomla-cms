@@ -18,5 +18,4 @@ defined('JPATH_PLATFORM') or die;
  */
 abstract class JDatabaseExporter
 {
-
 }

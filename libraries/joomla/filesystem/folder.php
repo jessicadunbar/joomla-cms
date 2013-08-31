@@ -54,6 +54,7 @@ abstract class JFolder
 		{
 			throw new RuntimeException('Source folder not found', -1);
 		}
+
 		if (self::exists($dest) && !$force)
 		{
 			throw new RuntimeException('Destination folder not found', -1);
@@ -75,6 +76,7 @@ abstract class JFolder
 			{
 				throw new RuntimeException('Cannot open source folder', -1);
 			}
+
 			// Walk through the directory copying files and recursing into folders.
 			while (($file = readdir($dh)) !== false)
 			{
@@ -93,6 +95,7 @@ abstract class JFolder
 								return $ret;
 							}
 						}
+
 						break;
 
 					case 'file':
@@ -103,6 +106,7 @@ abstract class JFolder
 						{
 							throw new RuntimeException('Copy file failed', -1);
 						}
+
 						break;
 				}
 			}
@@ -131,6 +135,7 @@ abstract class JFolder
 								return $ret;
 							}
 						}
+
 						break;
 
 					case 'file':
@@ -150,10 +155,12 @@ abstract class JFolder
 								throw new RuntimeException('Copy file failed', -1);
 							}
 						}
+
 						break;
 				}
 			}
 		}
+
 		return true;
 	}
 
@@ -253,6 +260,7 @@ abstract class JFolder
 						break;
 					}
 				}
+
 				if ($inBaseDir == false)
 				{
 					// Return false for JFolder::create because the path to be created is not in open_basedir
@@ -279,6 +287,7 @@ abstract class JFolder
 			// Reset umask
 			@umask($origmask);
 		}
+
 		return $ret;
 	}
 

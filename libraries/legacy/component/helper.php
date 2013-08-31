@@ -105,25 +105,25 @@ class JComponentHelper
 	public static function filterText($text)
 	{
 		// Filter settings
-		$config		= self::getParams('com_config');
-		$user		= JFactory::getUser();
-		$userGroups	= JAccess::getGroupsByUser($user->get('id'));
+		$config     = self::getParams('com_config');
+		$user       = JFactory::getUser();
+		$userGroups = JAccess::getGroupsByUser($user->get('id'));
 
 		$filters = $config->get('filters');
 
-		$blackListTags			= array();
-		$blackListAttributes	= array();
+		$blackListTags       = array();
+		$blackListAttributes = array();
 
-		$customListTags			= array();
-		$customListAttributes	= array();
+		$customListTags       = array();
+		$customListAttributes = array();
 
-		$whiteListTags			= array();
-		$whiteListAttributes	= array();
+		$whiteListTags       = array();
+		$whiteListAttributes = array();
 
-		$whiteList	= false;
-		$blackList	= false;
-		$customList	= false;
-		$unfiltered	= false;
+		$whiteList  = false;
+		$blackList  = false;
+		$customList = false;
+		$unfiltered = false;
 
 		// Cycle through each of the user groups the user is in.
 		// Remember they are included in the Public group as well.
@@ -152,10 +152,10 @@ class JComponentHelper
 			{
 				// Black or white list.
 				// Preprocess the tags and attributes.
-				$tags			= explode(',', $filterData->filter_tags);
-				$attributes		= explode(',', $filterData->filter_attributes);
-				$tempTags		= array();
-				$tempAttributes	= array();
+				$tags           = explode(',', $filterData->filter_tags);
+				$attributes     = explode(',', $filterData->filter_attributes);
+				$tempTags       = array();
+				$tempAttributes = array();
 
 				foreach ($tags as $tag)
 				{
@@ -229,6 +229,7 @@ class JComponentHelper
 				{
 					$filter->tagBlacklist = $customListTags;
 				}
+
 				if ($customListAttributes)
 				{
 					$filter->attrBlacklist = $customListAttributes;
@@ -248,6 +249,7 @@ class JComponentHelper
 				{
 					$filter->tagBlacklist = array_diff($filter->tagBlacklist, $whiteListTags);
 				}
+
 				// Remove white listed attributes from filter's default blacklist
 				if ($whiteListAttributes)
 				{

@@ -53,7 +53,7 @@ class Joomla_Sniffs_WhiteSpace_ControlStructureSpacingSniff implements PHP_CodeS
 		, T_FOREACH
 		, T_FOR
 		, T_SWITCH
-		, T_DO
+		//, T_DO - Commented in CMS to allow doEOL...{...}EOLwhile (...)EOL
 		, T_TRY
 		, T_FUNCTION
 		, T_CLASS

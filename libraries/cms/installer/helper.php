@@ -234,6 +234,7 @@ abstract class JInstallerHelper
 
 			return $parts[count($parts) - 1];
 		}
+
 		return false;
 	}
 

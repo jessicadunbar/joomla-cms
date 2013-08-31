@@ -51,7 +51,6 @@ class JFormFieldRadio extends JFormField
 		// Build the radio field output.
 		foreach ($options as $i => $option)
 		{
-
 			// Initialize some option attributes.
 			$checked = ((string) $option->value == (string) $this->value) ? ' checked="checked"' : '';
 			$class = !empty($option->class) ? ' class="' . $option->class . '"' : '';
@@ -87,7 +86,6 @@ class JFormFieldRadio extends JFormField
 
 		foreach ($this->element->children() as $option)
 		{
-
 			// Only add <option /> elements.
 			if ($option->getName() != 'option')
 			{

@@ -65,6 +65,7 @@ class JFeedLink
 	 * @param   integer  $length    The length of the resource in bytes.
 	 *
 	 * @since   12.3
+	 * @throws  InvalidArgumentException
 	 */
 	public function __construct($uri = null, $relation = null, $type = null, $language = null, $title = null, $length = null)
 	{
@@ -79,6 +80,7 @@ class JFeedLink
 		{
 			throw new InvalidArgumentException('Length must be numeric.');
 		}
+
 		$this->length = (int) $length;
 	}
 }

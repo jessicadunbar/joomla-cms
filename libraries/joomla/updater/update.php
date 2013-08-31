@@ -204,6 +204,7 @@ class JUpdate extends JObject
 				{
 					$this->currentUpdate->$name = new stdClass;
 				}
+
 				$this->currentUpdate->$name->_data = '';
 
 				foreach ($attrs as $key => $data)
@@ -211,6 +212,7 @@ class JUpdate extends JObject
 					$key = strtolower($key);
 					$this->currentUpdate->$name->$key = $data;
 				}
+
 				break;
 		}
 	}
@@ -255,7 +257,9 @@ class JUpdate extends JObject
 						$this->latest = $this->currentUpdate;
 					}
 				}
+
 				break;
+
 			case 'UPDATES':
 				// If the latest item is set then we transfer it to where we want to
 				if (isset($this->latest))
@@ -264,6 +268,7 @@ class JUpdate extends JObject
 					{
 						$this->$key = $val;
 					}
+
 					unset($this->latest);
 					unset($this->currentUpdate);
 				}
@@ -272,6 +277,7 @@ class JUpdate extends JObject
 					// The update might be for an older version of j!
 					unset($this->currentUpdate);
 				}
+
 				break;
 		}
 	}
@@ -296,6 +302,7 @@ class JUpdate extends JObject
 
 		// Throw the data for this item together
 		$tag = strtolower($tag);
+
 		if (isset($this->currentUpdate->$tag))
 		{
 			$this->currentUpdate->$tag->_data .= $data;
@@ -315,6 +322,7 @@ class JUpdate extends JObject
 	{
 		$http = JHttpFactory::getHttp();
 		$response = $http->get($url);
+
 		if (200 != $response->code)
 		{
 			// TODO: Add a 'mark bad' setting here somehow
@@ -336,6 +344,7 @@ class JUpdate extends JObject
 				)
 			);
 		}
+
 		xml_parser_free($this->xmlParser);
 		return true;
 	}

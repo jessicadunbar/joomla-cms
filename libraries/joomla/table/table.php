@@ -670,6 +670,7 @@ abstract class JTable extends JObject implements JObservableInterface
 				{
 					throw new InvalidArgumentException('Table has multiple primary keys specified, only one primary key value provided.');
 				}
+
 				$keys = array($this->getKeyName() => $keys);
 			}
 			else
@@ -951,6 +952,7 @@ abstract class JTable extends JObject implements JObservableInterface
 			{
 				throw new UnexpectedValueException('Null primary key not allowed.');
 			}
+
 			$this->$key = $pk[$key];
 		}
 

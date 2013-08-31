@@ -84,6 +84,8 @@ class JEditor extends JObject
 	 * Constructor
 	 *
 	 * @param   string  $editor  The editor name
+	 *
+	 * @since   1.5
 	 */
 	public function __construct($editor = 'none')
 	{
@@ -255,8 +257,7 @@ class JEditor extends JObject
 			}
 		}
 
-		$document = JFactory::getDocument();
-		$document->addCustomTag($return);
+		JFactory::getDocument()->addCustomTag($return);
 	}
 
 	/**
@@ -316,6 +317,7 @@ class JEditor extends JObject
 				$return .= $result;
 			}
 		}
+
 		return $return;
 	}
 
@@ -489,6 +491,7 @@ class JEditor extends JObject
 		if (!is_file($path))
 		{
 			$path = JPATH_PLUGINS . '/editors/' . $name . '/' . $name . '.php';
+
 			if (!is_file($path))
 			{
 				JLog::add(JText::_('JLIB_HTML_EDITOR_CANNOT_LOAD'), JLog::WARNING, 'jerror');
@@ -507,7 +510,7 @@ class JEditor extends JObject
 		$plugin->params = $params;
 
 		// Build editor plugin classname
-		$name = 'plgEditor' . $this->_name;
+		$name = 'PlgEditor' . $this->_name;
 
 		if ($this->_editor = new $name($this, (array) $plugin))
 		{

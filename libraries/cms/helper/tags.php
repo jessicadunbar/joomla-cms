@@ -234,7 +234,6 @@ class JHelperTags
 						}
 					}
 				}
-
 			}
 
 			// At this point $tags is an array of all tag ids
@@ -322,7 +321,6 @@ class JHelperTags
 						}
 					}
 				}
-
 			}
 
 			// At this point $tags is an array of all tag ids
@@ -347,9 +345,7 @@ class JHelperTags
 	{
 		$result = $this->unTagItem($contentItemId, $table);
 
-		/**
-		 * @var JTableCorecontent $ucmContentTable
-		 */
+		/* @var JTableCorecontent $ucmContentTable */
 		$ucmContentTable = JTable::getInstance('Corecontent');
 
 		return $result && $ucmContentTable->deleteByContentId($contentItemId);
@@ -400,6 +396,7 @@ class JHelperTags
 			{
 				$language = JHelperContent::getCurrentLanguage();
 			}
+
 			$query->where($db->quoteName('language') . ' IN (' . $db->quote($language) . ', ' . $db->quote('*') . ')');
 		}
 
@@ -484,9 +481,9 @@ class JHelperTags
 		$anyOrAll = true, $languageFilter = 'all', $stateFilter = '0,1')
 	{
 		// Create a new query object.
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$user = JFactory::getUser();
+		$db       = JFactory::getDbo();
+		$query    = $db->getQuery(true);
+		$user     = JFactory::getUser();
 		$nullDate = $db->quote($db->getNullDate());
 
 		$ntagsr = substr_count($tagId, ',') + 1;
@@ -810,6 +807,7 @@ class JHelperTags
 				$result = $result && $this->tagItem($ucmId, $table, $newTags, $replace);
 			}
 		}
+
 		return $result;
 	}
 

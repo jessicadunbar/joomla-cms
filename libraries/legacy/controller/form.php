@@ -88,10 +88,12 @@ class JControllerForm extends JControllerLegacy
 		if (empty($this->context))
 		{
 			$r = null;
+
 			if (!preg_match('/(.*)Controller(.*)/i', get_class($this), $r))
 			{
 				throw new Exception(JText::_('JLIB_APPLICATION_ERROR_CONTROLLER_GET_NAME'), 500);
 			}
+
 			$this->context = strtolower($r[2]);
 		}
 
@@ -264,6 +266,7 @@ class JControllerForm extends JControllerLegacy
 			{
 				$option = $this->option;
 			}
+
 			$contexts[$id] = $option . '.' . $this->context . '.' . $id;
 		}
 

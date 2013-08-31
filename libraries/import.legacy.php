@@ -22,13 +22,14 @@ if (!defined('IS_WIN'))
 {
 	define('IS_WIN', ($os === 'WIN') ? true : false);
 }
+
 if (!defined('IS_UNIX'))
 {
 	define('IS_UNIX', (($os !== 'MAC') && ($os !== 'WIN')) ? true : false);
 }
 
 /**
- * @deprecated 13.3	Use IS_UNIX instead
+ * @deprecated  13.3 (Platform) & 4.0 (CMS) Use IS_UNIX instead
  */
 if (!defined('IS_MAC'))
 {

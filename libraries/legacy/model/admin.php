@@ -185,6 +185,7 @@ abstract class JModelAdmin extends JModelForm
 			{
 				return false;
 			}
+
 			$done = true;
 		}
 
@@ -648,13 +649,13 @@ abstract class JModelAdmin extends JModelForm
 		{
 			if ($table->load($pk))
 			{
-
 				if ($table->checked_out > 0)
 				{
 					if (!parent::checkin($pk))
 					{
 						return false;
 					}
+
 					$count++;
 				}
 			}
@@ -706,13 +707,10 @@ abstract class JModelAdmin extends JModelForm
 		// Iterate the items to delete each one.
 		foreach ($pks as $i => $pk)
 		{
-
 			if ($table->load($pk))
 			{
-
 				if ($this->canDelete($table))
 				{
-
 					$context = $this->option . '.' . $this->name;
 
 					// Trigger the onContentBeforeDelete event.
@@ -731,11 +729,9 @@ abstract class JModelAdmin extends JModelForm
 
 					// Trigger the onContentAfterDelete event.
 					$dispatcher->trigger($this->event_after_delete, array($context, $table));
-
 				}
 				else
 				{
-
 					// Prune items that you can't change.
 					unset($pks[$i]);
 					$error = $this->getError();
@@ -750,7 +746,6 @@ abstract class JModelAdmin extends JModelForm
 						return false;
 					}
 				}
-
 			}
 			else
 			{
@@ -1098,6 +1093,7 @@ abstract class JModelAdmin extends JModelForm
 		{
 			$this->setState($this->getName() . '.id', $table->$pkName);
 		}
+
 		$this->setState($this->getName() . '.new', $isNew);
 
 		return true;

@@ -44,7 +44,7 @@ class JGoogleDataPicasa extends JGoogleData
 	 * @return  mixed  Data from Google
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function listAlbums($userID = 'default')
 	{
@@ -62,6 +62,7 @@ class JGoogleDataPicasa extends JGoogleData
 				{
 					$items[] = new JGoogleDataPicasaAlbum($item, $this->options, $this->auth);
 				}
+
 				return $items;
 			}
 			else
@@ -130,7 +131,7 @@ class JGoogleDataPicasa extends JGoogleData
 	 * @return  mixed  Data from Google
 	 *
 	 * @since   12.3
-	 * @throws UnexpectedValueException
+	 * @throws  UnexpectedValueException
 	 */
 	public function getAlbum($url)
 	{

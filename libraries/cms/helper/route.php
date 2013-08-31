@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Libraries
- * @subpackage  CMS
+ * @subpackage  Helper
  *
  * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
  * the #__content_types table and rows found in the #__ucm_content table.
  *
  * @package     Joomla.Libraries
- * @subpackage  CMS
+ * @subpackage  Helper
  * @since       3.1
  */
 class JHelperRoute
@@ -72,6 +72,7 @@ class JHelperRoute
 				$this->view  => array((int) $id)
 			);
 		}
+
 		if (empty($link))
 		{
 			// Create the link
@@ -81,9 +82,11 @@ class JHelperRoute
 		if ($catid > 1)
 		{
 			$categories = JCategories::getInstance($name);
+
 			if ($categories)
 			{
 				$category = $categories->get((int) $catid);
+
 				if ($category)
 				{
 					$needles['category'] = array_reverse($category->getPath());
@@ -104,6 +107,7 @@ class JHelperRoute
 
 			$db->setQuery($query);
 			$langs = $db->loadObjectList();
+
 			foreach ($langs as $lang)
 			{
 				if ($language == $lang->lang_code)
@@ -114,14 +118,14 @@ class JHelperRoute
 			}
 		}
 
-			if ($item = self::findItem($needles))
-			{
-				$link .= '&Itemid=' . $item;
-			}
-			elseif ($item = self::findItem())
-			{
-				$link .= '&Itemid=' . $item;
-			}
+		if ($item = self::findItem($needles))
+		{
+			$link .= '&Itemid=' . $item;
+		}
+		elseif ($item = self::findItem())
+		{
+			$link .= '&Itemid=' . $item;
+		}
 
 		return $link;
 	}
@@ -137,9 +141,9 @@ class JHelperRoute
 	 */
 	protected function findItem($needles = array())
 	{
-		$app		= JFactory::getApplication();
-		$menus		= $app->getMenu('site');
-		$language	= isset($needles['language']) ? $needles['language'] : '*';
+		$app      = JFactory::getApplication();
+		$menus    = $app->getMenu('site');
+		$language = isset($needles['language']) ? $needles['language'] : '*';
 
 		// Prepare the reverse lookup array.
 		if (!isset(self::$lookup[$language]))
@@ -164,10 +168,12 @@ class JHelperRoute
 				if (isset($item->query) && isset($item->query['view']))
 				{
 					$view = $item->query['view'];
+
 					if (!isset(self::$lookup[$language][$view]))
 					{
 						self::$lookup[$language][$view] = array();
 					}
+
 					if (isset($item->query['id']))
 					{
 						if (is_array($item->query['id']))
@@ -207,6 +213,7 @@ class JHelperRoute
 		}
 
 		$active = $menus->getActive();
+
 		if ($active && $active->component == $this->extension && ($active->language == '*' || !JLanguageMultilang::isEnabled()))
 		{
 			return $active->id;

@@ -74,8 +74,7 @@ class JFormFieldEditor extends JFormField
 		// Get an editor object.
 		$editor = $this->getEditor();
 
-		return $editor
-			->display(
+		return $editor->display(
 			$this->name, htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8'), $width, $height, $cols, $rows,
 			$buttons ? (is_array($buttons) ? array_merge($buttons, $hide) : $hide) : false, $this->id, $asset,
 			$this->form->getValue($authorField)
@@ -136,6 +135,7 @@ class JFormFieldEditor extends JFormField
 				$conf = JFactory::getConfig();
 				$editor = $conf->get('editor');
 			}
+
 			$this->editor = JEditor::getInstance($editor);
 		}
 

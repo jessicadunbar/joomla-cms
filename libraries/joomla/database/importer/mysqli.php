@@ -588,7 +588,6 @@ class JDatabaseImporterMysqli extends JDatabaseImporter
 						}
 						$this->addLog('Pass: ' . $this->db->getQuery());
 					}
-
 				}
 			}
 			else

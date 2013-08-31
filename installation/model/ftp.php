@@ -58,15 +58,18 @@ class InstallationModelFtp extends JModelBase
 
 		// Get the current working directory from the FTP server.
 		$cwd = $ftp->pwd();
+
 		if ($cwd === false)
 		{
 			$app->enqueueMessage(JText::_('INSTL_FTP_NOPWD'), 'error');
 			return false;
 		}
+
 		$cwd = rtrim($cwd, '/');
 
 		// Get a list of folders in the current working directory.
 		$cwdFolders = $ftp->listDetails(null, 'folders');
+
 		if ($cwdFolders === false || count($cwdFolders) == 0)
 		{
 			$app->enqueueMessage(JText::_('INSTL_FTP_NODIRECTORYLISTING'), 'error');
@@ -82,6 +85,7 @@ class InstallationModelFtp extends JModelBase
 		// Check to see if Joomla is installed at the FTP current working directory.
 		$paths = array();
 		$known = array('administrator', 'components', 'installation', 'language', 'libraries', 'plugins');
+
 		if (count(array_diff($known, $cwdFolders)) == 0)
 		{
 			$paths[] = $cwd . '/';
@@ -90,6 +94,7 @@ class InstallationModelFtp extends JModelBase
 		// Search through the segments of JPATH_SITE looking for root possibilities.
 		$parts = explode(DIRECTORY_SEPARATOR, JPATH_SITE);
 		$tmp = '';
+
 		for ($i = count($parts) - 1; $i >= 0; $i--)
 		{
 			$tmp = '/' . $parts[$i] . $tmp;
@@ -102,11 +107,13 @@ class InstallationModelFtp extends JModelBase
 		// Check all possible paths for the real Joomla installation by comparing version files.
 		$rootPath = false;
 		$checkValue = file_get_contents(JPATH_LIBRARIES . '/cms/version/version.php');
+
 		foreach ($paths as $tmp)
 		{
 			$filePath = rtrim($tmp, '/') . '/libraries/cms/version/version.php';
 			$buffer = null;
 			@ $ftp->read($filePath, $buffer);
+
 			if ($buffer == $checkValue)
 			{
 				$rootPath = $tmp;
@@ -154,6 +161,7 @@ class InstallationModelFtp extends JModelBase
 			$app->enqueueMessage(JText::_('INSTL_FTP_NOCONNECT'), 'error');
 			return false;
 		}
+
 		if (!$ftp->login($options->get('ftp_user'), $options->get('ftp_pass')))
 		{
 			$ftp->quit();
@@ -207,6 +215,7 @@ class InstallationModelFtp extends JModelBase
 
 		// Verify valid root path, part one
 		$checkList = array('robots.txt', 'index.php');
+
 		if (count(array_diff($checkList, $rootList)))
 		{
 			$ftp->quit();
@@ -216,6 +225,7 @@ class InstallationModelFtp extends JModelBase
 
 		// Verify RETR function
 		$buffer = null;
+
 		if ($ftp->read($root . '/libraries/cms/version/version.php', $buffer) === false)
 		{
 			$ftp->quit();
@@ -225,6 +235,7 @@ class InstallationModelFtp extends JModelBase
 
 		// Verify valid root path, part two
 		$checkValue = file_get_contents(JPATH_ROOT . '/libraries/cms/version/version.php');
+
 		if ($buffer !== $checkValue)
 		{
 			$ftp->quit();

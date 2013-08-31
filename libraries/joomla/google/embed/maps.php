@@ -18,7 +18,6 @@ defined('JPATH_PLATFORM') or die;
  */
 class JGoogleEmbedMaps extends JGoogleEmbed
 {
-
 	/**
 	 * @var    JHttp  The HTTP client object to use in sending HTTP requests.
 	 * @since  12.3
@@ -297,6 +296,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 			{
 				return false;
 			}
+
 			$location = $marker['loc'];
 		}
 		elseif (is_string($location))
@@ -381,6 +381,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 	 * @return  array The latitude/longitude of the deleted marker
 	 *
 	 * @since   12.3
+	 * @throws  OutOfBoundsException
 	 */
 	public function deleteMarker($index = null)
 	{
@@ -433,7 +434,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 	/**
 	 * Load javascript synchronously
 	 *
-	 * @return  JGoogleEmbedAMaps  The object for method chaining
+	 * @return  JGoogleEmbedMaps  The object for method chaining
 	 *
 	 * @since   12.3
 	 */
@@ -501,7 +502,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 	/**
 	 * Don't require access to sensor data
 	 *
-	 * @return  JGoogleEmbedAMaps  The object for method chaining
+	 * @return  JGoogleEmbedMaps  The object for method chaining
 	 *
 	 * @since   12.3
 	 */
@@ -529,7 +530,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 	 *
 	 * @param   string  $type  The method to add the callback (options are onload, jquery, mootools, and false)
 	 *
-	 * @return  JGoogleEmbedAMaps  The object for method chaining
+	 * @return  JGoogleEmbedMaps  The object for method chaining
 	 *
 	 * @since   12.3
 	 */
@@ -546,6 +547,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 	 * @return  string  Javascript code
 	 *
 	 * @since   12.3
+	 * @throws  UnexpectedValueException
 	 */
 	public function getHeader()
 	{
@@ -616,16 +618,16 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 		switch ($this->getAutoload())
 		{
 			case 'onload':
-			$output .= "window.onload={$onload};";
-			break;
+				$output .= "window.onload={$onload};";
+				break;
 
 			case 'jquery':
-			$output .= "$(document).ready({$onload});";
-			break;
+				$output .= "$(document).ready({$onload});";
+				break;
 
 			case 'mootools':
-			$output .= "window.addEvent('domready',{$onload});";
-			break;
+				$output .= "window.addEvent('domready',{$onload});";
+				break;
 		}
 
 		$output .= '</script>';
@@ -671,6 +673,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 	 * @return  array  An array containing Google's geocode data
 	 *
 	 * @since   12.3
+	 * @throws  RuntimeException
 	 */
 	public function geocodeAddress($address)
 	{
@@ -688,6 +691,7 @@ class JGoogleEmbedMaps extends JGoogleEmbed
 		{
 			throw new RuntimeException('Invalid json received geocoding address: ' . $response->body . '.');
 		}
+
 		if ($data['status'] != 'OK')
 		{
 			return null;

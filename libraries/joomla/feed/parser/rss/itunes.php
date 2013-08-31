@@ -31,7 +31,6 @@ class JFeedParserRssItunes implements JFeedParserNamespace
 	 */
 	public function processElementForFeed(JFeed $feed, SimpleXMLElement $el)
 	{
-
 	}
 
 	/**
@@ -46,6 +45,5 @@ class JFeedParserRssItunes implements JFeedParserNamespace
 	 */
 	public function processElementForFeedEntry(JFeedEntry $entry, SimpleXMLElement $el)
 	{
-
 	}
 }

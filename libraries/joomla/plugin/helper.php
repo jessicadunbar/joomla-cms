@@ -179,6 +179,7 @@ abstract class JPluginHelper
 			{
 				return $results;
 			}
+
 			$loaded[$type] = $results;
 		}
 
@@ -213,6 +214,7 @@ abstract class JPluginHelper
 				{
 					require_once $path;
 				}
+
 				$paths[$path] = true;
 
 				if ($autocreate)

@@ -176,9 +176,9 @@ abstract class JSchemaChangeitem
 	 * If not successful, $checkQuery is empty and , and $checkStatus is -1.
 	 * For example, this will happen if the current line is a non-DDL statement.
 	 *
-	 * @return void
+	 * @return  void
 	 *
-	 * @since  2.5
+	 * @since   2.5
 	 */
 	abstract protected function buildCheckQuery();
 
@@ -188,7 +188,7 @@ abstract class JSchemaChangeitem
 	 *
 	 * @return  boolean  true on success, false otherwise
 	 *
-	 * @since  2.5
+	 * @since   2.5
 	 */
 	public function check()
 	{
@@ -213,6 +213,7 @@ abstract class JSchemaChangeitem
 				$this->checkStatus = -2;
 			}
 		}
+
 		return $this->checkStatus;
 	}
 

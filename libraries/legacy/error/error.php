@@ -105,6 +105,7 @@ abstract class JError
 		{
 			$error = &self::$stack[0];
 		}
+
 		return $error;
 	}
 
@@ -616,7 +617,6 @@ abstract class JError
 			{
 				echo "\t" . $info . "\n";
 			}
-
 		}
 
 		return $error;
@@ -800,6 +800,7 @@ abstract class JError
 			// This is a common use case for Command Line Interface applications.
 			self::handleEcho($error, array());
 		}
+
 		$app->close(0);
 	}
 

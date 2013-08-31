@@ -45,14 +45,18 @@ class JUpdaterCollection extends JUpdateAdapter
 	protected $pop_parent = 0;
 
 	/**
-	 * @var array A list of discovered update sites
+	 * A list of discovered update sites
+	 *
+	 * @var    array
+	 * @since  11.1
 	 */
 	protected $update_sites;
 
 	/**
 	 * A list of discovered updates
 	 *
-	 * @var array
+	 * @var    array
+	 * @since  11.1
 	 */
 	protected $updates;
 
@@ -114,23 +118,29 @@ class JUpdaterCollection extends JUpdateAdapter
 					// This item will have children, so prepare to attach them
 					$this->pop_parent = 1;
 				}
+
 				break;
+
 			case 'EXTENSION':
 				$update = JTable::getInstance('update');
 				$update->set('update_site_id', $this->updateSiteId);
+
 				foreach ($this->updatecols as $col)
 				{
 					// Reset the values if it doesn't exist
 					if (!array_key_exists($col, $attrs))
 					{
 						$attrs[$col] = '';
+
 						if ($col == 'CLIENT')
 						{
 							$attrs[$col] = 'site';
 						}
 					}
 				}
+
 				$client = JApplicationHelper::getClientInfo($attrs['CLIENT'], 1);
+
 				if (isset($client->id))
 				{
 					$attrs['CLIENT_ID'] = $client->id;
@@ -160,11 +170,13 @@ class JUpdaterCollection extends JUpdateAdapter
 				{
 					$values['targetplatform'] = $product;
 				}
+
 				// Set this to ourself as a default
 				if (!isset($values['targetplatformversion']))
 				{
 					$values['targetplatformversion'] = $ver->RELEASE;
 				}
+
 				// Set this to ourself as a default
 				// validate that we can install the extension
 				if ($product == $values['targetplatform'] && preg_match('/' . $values['targetplatformversion'] . '/', $ver->RELEASE))
@@ -172,6 +184,7 @@ class JUpdaterCollection extends JUpdateAdapter
 					$update->bind($values);
 					$this->updates[] = $update;
 				}
+
 				break;
 		}
 	}
@@ -198,6 +211,7 @@ class JUpdaterCollection extends JUpdateAdapter
 					$this->pop_parent = 0;
 					array_pop($this->parent);
 				}
+
 				break;
 		}
 	}
@@ -217,12 +231,14 @@ class JUpdaterCollection extends JUpdateAdapter
 	{
 		$url = $options['location'];
 		$this->updateSiteId = $options['update_site_id'];
+
 		if (substr($url, -4) != '.xml')
 		{
 			if (substr($url, -1) != '/')
 			{
 				$url .= '/';
 			}
+
 			$url .= 'update.xml';
 		}
 
@@ -232,7 +248,6 @@ class JUpdaterCollection extends JUpdateAdapter
 		$db = $this->parent->getDBO();
 
 		$http = JHttpFactory::getHttp();
-		$response = $http->get($url);
 
 		// JHttp transport throws an exception when there's no reponse.
 		try
@@ -262,6 +277,7 @@ class JUpdaterCollection extends JUpdateAdapter
 		$this->xmlParser = xml_parser_create('');
 		xml_set_object($this->xmlParser, $this);
 		xml_set_element_handler($this->xmlParser, '_startElement', '_endElement');
+
 		if (!xml_parse($this->xmlParser, $response->body))
 		{
 			JLog::add("Error parsing url: " . $url, JLog::WARNING, 'updater');
@@ -269,6 +285,7 @@ class JUpdaterCollection extends JUpdateAdapter
 			$app->enqueueMessage(JText::sprintf('JLIB_UPDATER_ERROR_COLLECTION_PARSE_URL', $url), 'warning');
 			return false;
 		}
+
 		// TODO: Decrement the bad counter if non-zero
 		return array('update_sites' => $this->update_sites, 'updates' => $this->updates);
 	}

@@ -55,6 +55,7 @@ class JUpdater extends JAdapter
 		{
 			self::$instance = new JUpdater;
 		}
+
 		return self::$instance;
 	}
 
@@ -70,7 +71,6 @@ class JUpdater extends JAdapter
 	 */
 	public function findUpdates($eid = 0, $cacheTimeout = 0)
 	{
-
 		$db = $this->getDBO();
 		$retval = false;
 
@@ -85,19 +85,23 @@ class JUpdater extends JAdapter
 				' WHERE update_site_id IN' .
 				'  (SELECT update_site_id FROM #__update_sites_extensions WHERE extension_id IN (' . implode(',', $eid) . '))';
 		}
+
 		$db->setQuery($query);
 		$results = $db->loadAssocList();
 		$result_count = count($results);
 		$now = time();
+
 		for ($i = 0; $i < $result_count; $i++)
 		{
 			$result = &$results[$i];
 			$this->setAdapter($result['type']);
+
 			if (!isset($this->_adapters[$result['type']]))
 			{
 				// Ignore update sites requiring adapters we don't have installed
 				continue;
 			}
+
 			if ($cacheTimeout > 0)
 			{
 				if (isset($result['last_check_timestamp']) && ($now - $result['last_check_timestamp'] <= $cacheTimeout))
@@ -108,7 +112,9 @@ class JUpdater extends JAdapter
 					continue;
 				}
 			}
+
 			$update_result = $this->_adapters[$result['type']]->findUpdate($result);
+
 			if (is_array($update_result))
 			{
 				if (array_key_exists('update_sites', $update_result) && count($update_result['update_sites']))
@@ -116,6 +122,7 @@ class JUpdater extends JAdapter
 					$results = JArrayHelper::arrayUnique(array_merge($results, $update_result['update_sites']));
 					$result_count = count($results);
 				}
+
 				if (array_key_exists('updates', $update_result) && count($update_result['updates']))
 				{
 					for ($k = 0, $count = count($update_result['updates']); $k < $count; $k++)
@@ -140,6 +147,7 @@ class JUpdater extends JAdapter
 								'folder' => strtolower($current_update->get('folder'))
 							)
 						);
+
 						if (!$uid)
 						{
 							// Set the extension id
@@ -148,6 +156,7 @@ class JUpdater extends JAdapter
 								// We have an installed extension, check the update is actually newer
 								$extension->load($eid);
 								$data = json_decode($extension->manifest_cache, true);
+
 								if (version_compare($current_update->version, $data['version'], '>') == 1)
 								{
 									$current_update->extension_id = $eid;
@@ -182,6 +191,7 @@ class JUpdater extends JAdapter
 			$db->setQuery($query);
 			$db->execute();
 		}
+
 		return $retval;
 	}
 
@@ -199,11 +209,12 @@ class JUpdater extends JAdapter
 		$updaterow = JTable::getInstance('update');
 		$updaterow->load($id);
 		$update = new JUpdate;
+
 		if ($update->loadFromXML($updaterow->detailsurl))
 		{
 			return $update->install();
 		}
+
 		return false;
 	}
-
 }

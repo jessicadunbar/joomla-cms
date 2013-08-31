@@ -799,6 +799,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		{
 			return $cursor->fetch(PDO::FETCH_NUM);
 		}
+
 		if ($this->prepared instanceof PDOStatement)
 		{
 			return $this->prepared->fetch(PDO::FETCH_NUM);
@@ -820,6 +821,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		{
 			return $cursor->fetch(PDO::FETCH_ASSOC);
 		}
+
 		if ($this->prepared instanceof PDOStatement)
 		{
 			return $this->prepared->fetch(PDO::FETCH_ASSOC);
@@ -842,6 +844,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		{
 			return $cursor->fetchObject($class);
 		}
+
 		if ($this->prepared instanceof PDOStatement)
 		{
 			return $this->prepared->fetchObject($class);
@@ -866,6 +869,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 			$cursor->closeCursor();
 			$cursor = null;
 		}
+
 		if ($this->prepared instanceof PDOStatement)
 		{
 			$this->prepared->closeCursor();

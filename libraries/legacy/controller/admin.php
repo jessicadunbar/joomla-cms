@@ -90,10 +90,12 @@ class JControllerAdmin extends JControllerLegacy
 		if (empty($this->view_list))
 		{
 			$r = null;
+
 			if (!preg_match('/(.*)Controller(.*)/i', get_class($this), $r))
 			{
 				throw new Exception(JText::_('JLIB_APPLICATION_ERROR_CONTROLLER_GET_NAME'), 500);
 			}
+
 			$this->view_list = strtolower($r[2]);
 		}
 	}
@@ -223,14 +225,15 @@ class JControllerAdmin extends JControllerLegacy
 				{
 					$ntext = $this->text_prefix . '_N_ITEMS_TRASHED';
 				}
+
 				$this->setMessage(JText::plural($ntext, count($cid)));
 			}
 			catch (Exception $e)
 			{
 				$this->setMessage(JText::_('JLIB_DATABASE_ERROR_ANCESTOR_NODES_LOWER_STATE'), 'error');
 			}
-
 		}
+
 		$extension = $this->input->get('extension');
 		$extensionURL = ($extension) ? '&extension=' . $extension : '';
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_list . $extensionURL, false));

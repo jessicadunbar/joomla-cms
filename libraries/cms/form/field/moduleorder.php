@@ -64,6 +64,7 @@ class JFormFieldModuleOrder extends JFormField
 			->order('ordering');
 
 		$db->setQuery($query);
+
 		try
 		{
 			$orders = $db->loadObjectList();
@@ -75,12 +76,14 @@ class JFormFieldModuleOrder extends JFormField
 		}
 
 		$orders2 = array();
+
 		for ($i = 0, $n = count($orders); $i < $n; $i++)
 		{
 			if (!isset($orders2[$orders[$i]->position]))
 			{
 				$orders2[$orders[$i]->position] = 0;
 			}
+
 			$orders2[$orders[$i]->position]++;
 			$ord = $orders2[$orders[$i]->position];
 			$title = JText::sprintf('COM_MODULES_OPTION_ORDER_POSITION', $ord, addslashes($orders[$i]->title));

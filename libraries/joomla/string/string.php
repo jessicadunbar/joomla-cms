@@ -698,6 +698,7 @@ abstract class JString
 			{
 				$newDelimiter = $delimiter;
 			}
+
 			return implode($newDelimiter, array_map('utf8_ucfirst', explode($delimiter, $str)));
 		}
 	}
@@ -837,7 +838,6 @@ abstract class JString
 					$mUcs4 = ($mUcs4 & 1) << 30;
 					$mState = 5;
 					$mBytes = 6;
-
 				}
 				else
 				{

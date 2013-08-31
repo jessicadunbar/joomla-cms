@@ -129,10 +129,10 @@ class JFile
 
 				if (!$ftp->store($src, $dest))
 				{
-
 					// FTP connector throws an error
 					return false;
 				}
+
 				$ret = true;
 			}
 			else
@@ -143,6 +143,7 @@ class JFile
 
 					return false;
 				}
+
 				$ret = true;
 			}
 
@@ -239,7 +240,6 @@ class JFile
 		// Check src path
 		if (!is_readable($src))
 		{
-
 			return JText::_('JLIB_FILESYSTEM_CANNOT_FIND_SOURCE_FILE');
 		}
 
@@ -543,12 +543,10 @@ class JFile
 
 		if ($slash !== false)
 		{
-
 			return substr($file, $slash + 1);
 		}
 		else
 		{
-
 			return $file;
 		}
 	}

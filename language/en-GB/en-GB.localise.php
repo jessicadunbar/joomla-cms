@@ -29,17 +29,16 @@ abstract class En_GBLocalise
 	{
 		if ($count == 0)
 		{
-			$return = array('0');
+			return array('0');
 		}
 		elseif ($count == 1)
 		{
-			$return = array('1');
+			return array('1');
 		}
 		else
 		{
-			$return = array('MORE');
+			return array('MORE');
 		}
-		return $return;
 	}
 
 	/**
@@ -51,11 +50,7 @@ abstract class En_GBLocalise
 	 */
 	public static function getIgnoredSearchWords()
 	{
-		$search_ignore = array();
-		$search_ignore[] = "and";
-		$search_ignore[] = "in";
-		$search_ignore[] = "on";
-		return $search_ignore;
+		return array('and', 'in', 'on');
 	}
 
 	/**

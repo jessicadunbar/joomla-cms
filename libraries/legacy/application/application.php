@@ -394,6 +394,7 @@ class JApplication extends JApplicationBase
 			$document = JFactory::getDocument();
 
 			jimport('phputf8.utils.ascii');
+
 			if (($this->client->engine == JApplicationWebClient::TRIDENT) && !utf8_is_ascii($url))
 			{
 				// MSIE type browser and/or server cause issues when url contains utf8 character,so use a javascript redirect method
@@ -408,6 +409,7 @@ class JApplication extends JApplicationBase
 				header('Content-Type: text/html; charset=' . $document->getCharset());
 			}
 		}
+
 		$this->close();
 	}
 
@@ -500,10 +502,12 @@ class JApplication extends JApplicationBase
 		if (empty($name))
 		{
 			$r = null;
+
 			if (!preg_match('/J(.*)/i', get_class($this), $r))
 			{
 				JLog::add(JText::_('JLIB_APPLICATION_ERROR_APPLICATION_GET_NAME'), JLog::WARNING, 'jerror');
 			}
+
 			$name = strtolower($r[1]);
 		}
 

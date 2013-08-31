@@ -23,6 +23,7 @@ class JLogEntry
 {
 	/**
 	 * Application responsible for log entry.
+	 *
 	 * @var    string
 	 * @since  11.1
 	 */
@@ -30,6 +31,7 @@ class JLogEntry
 
 	/**
 	 * The date the message was logged.
+	 *
 	 * @var    JDate
 	 * @since  11.1
 	 */
@@ -37,6 +39,7 @@ class JLogEntry
 
 	/**
 	 * Message to be logged.
+	 *
 	 * @var    string
 	 * @since  11.1
 	 */
@@ -44,6 +47,7 @@ class JLogEntry
 
 	/**
 	 * The priority of the message to be logged.
+	 *
 	 * @var    string
 	 * @since  11.1
 	 * @see    $priorities
@@ -52,6 +56,7 @@ class JLogEntry
 
 	/**
 	 * List of available log priority levels [Based on the Syslog default levels].
+	 *
 	 * @var    array
 	 * @since  11.1
 	 */
@@ -85,6 +90,7 @@ class JLogEntry
 		{
 			$priority = JLog::INFO;
 		}
+
 		$this->priority = $priority;
 
 		// Sanitize category if it exists.

@@ -37,6 +37,7 @@ class JFormRuleTel extends JFormRule
 	{
 		// If the field is empty and not required, the field is valid.
 		$required = ((string) $element['required'] == 'true' || (string) $element['required'] == 'required');
+
 		if (!$required && empty($value))
 		{
 			return true;
@@ -55,8 +56,8 @@ class JFormRuleTel extends JFormRule
 			'ITU-T' => '/^\+(?:[0-9] ?){6,14}[0-9]$/', 'EPP' => '/^\+[0-9]{1,3}\.[0-9]{4,14}(?:x.+)?$/');
 		if (isset($element['plan']))
 		{
-
 			$plan = (string) $element['plan'];
+
 			if ($plan == 'northamerica' || $plan == 'us')
 			{
 				$plan = 'NANP';
@@ -75,7 +76,6 @@ class JFormRuleTel extends JFormRule
 			// Test the value against the regular expression.
 			if (preg_match($regex, $value) == false)
 			{
-
 				return false;
 			}
 		}
@@ -88,14 +88,13 @@ class JFormRuleTel extends JFormRule
 			 */
 			$cleanvalue = preg_replace('/[+. \-(\)]/', '', $value);
 			$regex = '/^[0-9]{7,15}?$/';
+
 			if (preg_match($regex, $cleanvalue) == true)
 			{
-
 				return true;
 			}
 			else
 			{
-
 				return false;
 			}
 		}

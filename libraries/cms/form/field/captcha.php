@@ -21,7 +21,8 @@ class JFormFieldCaptcha extends JFormField
 	/**
 	 * The field type.
 	 *
-	 * @var		string
+	 * @var    string
+	 * @since  2.5
 	 */
 	protected $type = 'Captcha';
 
@@ -45,6 +46,7 @@ class JFormFieldCaptcha extends JFormField
 		$plugin = $this->element['plugin'] ?
 			(string) $this->element['plugin'] :
 			JFactory::getApplication()->getParams()->get('captcha', JFactory::getConfig()->get('captcha'));
+
 		if ($plugin === 0 || $plugin === '0' || $plugin === '' || $plugin === null)
 		{
 			$this->hidden = true;
@@ -55,6 +57,7 @@ class JFormFieldCaptcha extends JFormField
 			// Obs: Don't put required="required" in the xml file, you just need to have validate="captcha"
 			$this->required = true;
 			$class = $this->element['class'];
+
 			if (strpos($class, 'required') === false)
 			{
 				$this->element['class'] = $class . ' required';
@@ -84,7 +87,6 @@ class JFormFieldCaptcha extends JFormField
 		}
 		else
 		{
-
 			if (($captcha = JCaptcha::getInstance($plugin, array('namespace' => $namespace))) == null)
 			{
 				return '';

@@ -258,6 +258,7 @@ class JLanguageTransliterate
 					'Ĕ' => 'E',
 					'Œ' => 'Oe');
 			}
+
 			$string = str_replace(array_keys($UTF8_UPPER_ACCENTS), array_values($UTF8_UPPER_ACCENTS), $string);
 		}
 

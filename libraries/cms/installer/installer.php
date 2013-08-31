@@ -136,6 +136,7 @@ class JInstaller extends JAdapter
 		{
 			self::$instance = new JInstaller;
 		}
+
 		return self::$instance;
 	}
 
@@ -1554,7 +1555,6 @@ class JInstaller extends JAdapter
 		 */
 		if (is_array($files) && count($files) > 0)
 		{
-
 			foreach ($files as $file)
 			{
 				// Get the source and destination paths
@@ -1574,7 +1574,6 @@ class JInstaller extends JAdapter
 				}
 				elseif (($exists = file_exists($filedest)) && !$overwrite)
 				{
-
 					// It's okay if the manifest already exists
 					if ($this->getPath('manifest') == $filesource)
 					{
@@ -1842,7 +1841,6 @@ class JInstaller extends JAdapter
 		// If at least one XML file exists
 		if (!empty($xmlfiles))
 		{
-
 			foreach ($xmlfiles as $file)
 			{
 				// Is it a valid Joomla installation manifest file?

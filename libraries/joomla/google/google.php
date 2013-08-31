@@ -28,7 +28,7 @@ class JGoogle
 	protected $options;
 
 	/**
-	 * @var    JAuth  The authentication client object to use in sending authenticated HTTP requests.
+	 * @var    JGoogleAuth  The authentication client object to use in sending authenticated HTTP requests.
 	 * @since  12.3
 	 */
 	protected $auth;
@@ -48,8 +48,8 @@ class JGoogle
 	/**
 	 * Constructor.
 	 *
-	 * @param   JRegistry  $options  Google options object.
-	 * @param   JAuth      $auth     The authentication client object.
+	 * @param   JRegistry    $options  Google options object.
+	 * @param   JGoogleAuth  $auth     The authentication client object.
 	 *
 	 * @since   12.3
 	 */
@@ -76,24 +76,26 @@ class JGoogle
 		{
 			$options = $this->options;
 		}
+
 		if ($this->auth && !$auth)
 		{
 			$auth = $this->auth;
 		}
-		switch ($name)
+
+		switch (strtolower($name))
 		{
 			case 'plus':
-			case 'Plus':
 				return new JGoogleDataPlus($options, $auth);
+
 			case 'picasa':
-			case 'Picasa':
 				return new JGoogleDataPicasa($options, $auth);
+
 			case 'adsense':
-			case 'Adsense':
 				return new JGoogleDataAdsense($options, $auth);
+
 			case 'calendar':
-			case 'Calendar':
 				return new JGoogleDataCalendar($options, $auth);
+
 			default:
 				return null;
 		}
@@ -115,14 +117,15 @@ class JGoogle
 		{
 			$options = $this->options;
 		}
-		switch ($name)
+
+		switch (strtolower($name))
 		{
 			case 'maps':
-			case 'Maps':
 				return new JGoogleEmbedMaps($options);
+
 			case 'analytics':
-			case 'Analytics':
 				return new JGoogleEmbedAnalytics($options);
+
 			default:
 				return null;
 		}

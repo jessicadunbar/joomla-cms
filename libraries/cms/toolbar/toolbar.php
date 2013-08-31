@@ -22,6 +22,7 @@ class JToolbar
 	 * Toolbar name
 	 *
 	 * @var    string
+	 * @since  1.5
 	 */
 	protected $_name = array();
 
@@ -29,6 +30,7 @@ class JToolbar
 	 * Toolbar array
 	 *
 	 * @var    array
+	 * @since  1.5
 	 */
 	protected $_bar = array();
 
@@ -36,6 +38,7 @@ class JToolbar
 	 * Loaded buttons
 	 *
 	 * @var    array
+	 * @since  1.5
 	 */
 	protected $_buttons = array();
 
@@ -43,6 +46,7 @@ class JToolbar
 	 * Directories, where button types can be stored.
 	 *
 	 * @var    array
+	 * @since  1.5
 	 */
 	protected $_buttonPath = array();
 
@@ -67,7 +71,6 @@ class JToolbar
 
 		// Set base path to find buttons.
 		$this->_buttonPath[] = __DIR__ . '/button';
-
 	}
 
 	/**
@@ -102,6 +105,7 @@ class JToolbar
 		// Push button onto the end of the toolbar array.
 		$btn = func_get_args();
 		array_push($this->_bar, $btn);
+
 		return true;
 	}
 
@@ -141,6 +145,7 @@ class JToolbar
 		// Insert button into the front of the toolbar array.
 		$btn = func_get_args();
 		array_unshift($this->_bar, $btn);
+
 		return true;
 	}
 
@@ -195,6 +200,7 @@ class JToolbar
 		{
 			return JText::sprintf('JLIB_HTML_BUTTON_NOT_DEFINED', $type);
 		}
+
 		return $button->render($node);
 	}
 
@@ -211,6 +217,7 @@ class JToolbar
 	public function loadButtonType($type, $new = false)
 	{
 		$signature = md5($type);
+
 		if (isset($this->_buttons[$signature]) && $new === false)
 		{
 			return $this->_buttons[$signature];
@@ -224,8 +231,9 @@ class JToolbar
 
 		$buttonClass = 'JToolbarButton' . ucfirst($type);
 
-		// @deprecated 12.3 Remove the acceptance of legacy classes starting with JButton.
+		// @deprecated 12.3 (Platform) & 4.0 (CMS) - Remove the acceptance of legacy classes starting with JButton.
 		$buttonClassOld = 'JButton' . ucfirst($type);
+
 		if (!class_exists($buttonClass))
 		{
 			if (!class_exists($buttonClassOld))
@@ -242,6 +250,7 @@ class JToolbar
 				$file = JFilterInput::getInstance()->clean(str_replace('_', DIRECTORY_SEPARATOR, strtolower($type)) . '.php', 'path');
 
 				jimport('joomla.filesystem.path');
+
 				if ($buttonFile = JPath::find($dirs, $file))
 				{
 					include_once $buttonFile;
@@ -259,6 +268,7 @@ class JToolbar
 			// @todo remove code: return	JError::raiseError('SOME_ERROR_CODE', "Module file $buttonFile does not contain class $buttonClass.");
 			return false;
 		}
+
 		$this->_buttons[$signature] = new $buttonClass($this);
 
 		return $this->_buttons[$signature];
@@ -277,8 +287,8 @@ class JToolbar
 	 *
 	 * @return  void
 	 *
-	 * @since   boolean
 	 * @see     JToolbar
+	 * @since   1.5
 	 */
 	public function addButtonPath($path)
 	{
@@ -301,6 +311,5 @@ class JToolbar
 			// Add to the top of the search dirs.
 			array_unshift($this->_buttonPath, $dir);
 		}
-
 	}
 }

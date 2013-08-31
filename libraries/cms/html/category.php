@@ -80,6 +80,7 @@ abstract class JHtmlCategory
 					{
 						$language = $db->quote($language);
 					}
+
 					$query->where('a.language IN (' . implode(',', $config['filter.language']) . ')');
 				}
 			}
@@ -157,6 +158,7 @@ abstract class JHtmlCategory
 				$item->title = str_repeat('- ', $repeat) . $item->title;
 				static::$items[$hash][] = JHtml::_('select.option', $item->id, $item->title);
 			}
+
 			// Special "Add to root" option:
 			static::$items[$hash][] = JHtml::_('select.option', '1', JText::_('JLIB_HTML_ADD_TO_ROOT'));
 		}

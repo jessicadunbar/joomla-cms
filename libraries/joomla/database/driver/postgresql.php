@@ -431,6 +431,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 
 			return $keys;
 		}
+
 		return false;
 	}
 
@@ -506,6 +507,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 
 			return $seq;
 		}
+
 		return false;
 	}
 
@@ -855,6 +857,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 				{
 					$field_value = $this->getNullDate();
 				}
+
 				$val = $this->quote($field_value);
 				break;
 
@@ -1227,6 +1230,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 				{
 					$query[$nIndex] = str_replace($prefix, $this->tablePrefix, $query[$nIndex]);
 				}
+
 				$query = implode('currval', $query);
 			}
 
@@ -1239,6 +1243,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 				{
 					$query[$nIndex] = str_replace($prefix, $this->tablePrefix, $query[$nIndex]);
 				}
+
 				$query = implode('nextval', $query);
 			}
 
@@ -1251,6 +1256,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 				{
 					$query[$nIndex] = str_replace($prefix, $this->tablePrefix, $query[$nIndex]);
 				}
+
 				$query = implode('setval', $query);
 			}
 

@@ -67,6 +67,7 @@ class JOAuth2Client
 	 * @return  string  The access token
 	 *
 	 * @since   12.3
+	 * @throws  RuntimeException
 	 */
 	public function authenticate()
 	{
@@ -80,7 +81,6 @@ class JOAuth2Client
 
 			if ($response->code >= 200 && $response->code < 400)
 			{
-
 				if ($response->headers['Content-Type'] == 'application/json')
 				{
 					$token = array_merge(json_decode($response->body, true), array('created' => time()));
@@ -105,6 +105,7 @@ class JOAuth2Client
 		{
 			$this->application->redirect($this->createUrl());
 		}
+
 		return false;
 	}
 
@@ -136,9 +137,10 @@ class JOAuth2Client
 	/**
 	 * Create the URL for authentication.
 	 *
-	 * @return  JHttpResponse  The HTTP response
+	 * @return  string  The URL to request through
 	 *
 	 * @since   12.3
+	 * @throws  InvalidArgumentException
 	 */
 	public function createUrl()
 	{
@@ -200,6 +202,8 @@ class JOAuth2Client
 	 * @return  string  The URL.
 	 *
 	 * @since   12.3
+	 * @throws  InvalidArgumentException
+	 * @throws  RuntimeException
 	 */
 	public function query($url, $data = null, $headers = array(), $method = 'get', $timeout = null)
 	{
@@ -211,6 +215,7 @@ class JOAuth2Client
 			{
 				return false;
 			}
+
 			$token = $this->refreshToken($token['refresh_token']);
 		}
 
@@ -228,6 +233,7 @@ class JOAuth2Client
 			{
 				$url .= '?';
 			}
+
 			$url .= $this->getOption('getparam') ? $this->getOption('getparam') : 'access_token';
 			$url .= '=' . $token['access_token'];
 		}
@@ -238,21 +244,24 @@ class JOAuth2Client
 			case 'get':
 			case 'delete':
 			case 'trace':
-			$response = $this->http->$method($url, $headers, $timeout);
-			break;
+				$response = $this->http->$method($url, $headers, $timeout);
+				break;
+
 			case 'post':
 			case 'put':
 			case 'patch':
-			$response = $this->http->$method($url, $data, $headers, $timeout);
-			break;
+				$response = $this->http->$method($url, $data, $headers, $timeout);
+				break;
+
 			default:
-			throw new InvalidArgumentException('Unknown HTTP request method: ' . $method . '.');
+				throw new InvalidArgumentException('Unknown HTTP request method: ' . $method . '.');
 		}
 
 		if ($response->code < 200 || $response->code >= 400)
 		{
 			throw new RuntimeException('Error code ' . $response->code . ' received requesting data: ' . $response->body . '.');
 		}
+
 		return $response;
 	}
 
@@ -315,6 +324,7 @@ class JOAuth2Client
 			$value['expires_in'] = $value['expires'];
 			unset($value['expires']);
 		}
+
 		$this->setOption('accesstoken', $value);
 
 		return $this;
@@ -328,6 +338,8 @@ class JOAuth2Client
 	 * @return  array  The new access token
 	 *
 	 * @since   12.3
+	 * @throws  Exception
+	 * @throws  RuntimeException
 	 */
 	public function refreshToken($token = null)
 	{
@@ -344,8 +356,10 @@ class JOAuth2Client
 			{
 				throw new RuntimeException('No refresh token is available.');
 			}
+
 			$token = $token['refresh_token'];
 		}
+
 		$data['grant_type'] = 'refresh_token';
 		$data['refresh_token'] = $token;
 		$data['client_id'] = $this->getOption('clientid');

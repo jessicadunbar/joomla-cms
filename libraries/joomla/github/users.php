@@ -146,5 +146,4 @@ class JGithubUsers extends JGithubObject
 
 		return json_decode($response->body);
 	}
-
 }

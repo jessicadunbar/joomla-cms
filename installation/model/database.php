@@ -176,9 +176,9 @@ class InstallationModelDatabase extends JModelBase
 	 *
 	 * @param   array  $options  The configuration options
 	 *
-	 * @return    boolean    True on success.
+	 * @return  boolean  True on success.
 	 *
-	 * @since    3.1
+	 * @since   3.1
 	 */
 	public function createDatabase($options)
 	{
@@ -193,6 +193,7 @@ class InstallationModelDatabase extends JModelBase
 		{
 			$tmpSelect = $options['db_select'];
 		}
+
 		$options['db_select'] = false;
 
 		if (!$db = $this->initialise($options))
@@ -286,6 +287,7 @@ class InstallationModelDatabase extends JModelBase
 				break;
 			}
 		}
+
 		$options = array_merge(array('db_created' => 1), $options);
 
 		// Restore autoselect value after database creation
@@ -422,6 +424,7 @@ class InstallationModelDatabase extends JModelBase
 		{
 			$pathPart .= $type . '/';
 		}
+
 		$files = JFolder::files($pathPart, '\.sql$');
 
 		if (empty($files))
@@ -429,6 +432,7 @@ class InstallationModelDatabase extends JModelBase
 			$app->enqueueMessage(JText::_('INSTL_ERROR_INITIALISE_SCHEMA'), 'notice');
 			return false;
 		}
+
 		$version = '';
 
 		foreach ($files as $file)
@@ -438,6 +442,7 @@ class InstallationModelDatabase extends JModelBase
 				$version = JFile::stripExt($file);
 			}
 		}
+
 		$query = $db->getQuery(true)
 			->insert($db->quoteName('#__schemas'))
 			->columns(
@@ -533,6 +538,7 @@ class InstallationModelDatabase extends JModelBase
 			{
 				$params['site'] = $options->language;
 			}
+
 			$params = json_encode($params);
 
 			// Update the language settings in the language manager.
@@ -906,10 +912,12 @@ class InstallationModelDatabase extends JModelBase
 			{
 				$in_string = $query[$i];
 			}
+
 			if (isset ($buffer[1]))
 			{
 				$buffer[0] = $buffer[1];
 			}
+
 			$buffer[1] = $query[$i];
 		}
 

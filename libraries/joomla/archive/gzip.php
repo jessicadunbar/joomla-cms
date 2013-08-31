@@ -175,6 +175,7 @@ class JArchiveGzip implements JArchiveExtractable
 			$output->close();
 			$input->close();
 		}
+
 		return true;
 	}
 

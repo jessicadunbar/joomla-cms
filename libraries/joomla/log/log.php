@@ -26,6 +26,7 @@ class JLog
 {
 	/**
 	 * All log priorities.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -33,6 +34,7 @@ class JLog
 
 	/**
 	 * The system is unusable.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -40,6 +42,7 @@ class JLog
 
 	/**
 	 * Action must be taken immediately.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -47,6 +50,7 @@ class JLog
 
 	/**
 	 * Critical conditions.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -54,6 +58,7 @@ class JLog
 
 	/**
 	 * Error conditions.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -61,6 +66,7 @@ class JLog
 
 	/**
 	 * Warning conditions.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -68,6 +74,7 @@ class JLog
 
 	/**
 	 * Normal, but significant condition.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -75,6 +82,7 @@ class JLog
 
 	/**
 	 * Informational message.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -82,6 +90,7 @@ class JLog
 
 	/**
 	 * Debugging message.
+	 *
 	 * @var    integer
 	 * @since  11.1
 	 */
@@ -89,6 +98,7 @@ class JLog
 
 	/**
 	 * The global JLog instance.
+	 *
 	 * @var    JLog
 	 * @since  11.1
 	 */
@@ -96,6 +106,7 @@ class JLog
 
 	/**
 	 * Container for JLogLogger configurations.
+	 *
 	 * @var    array
 	 * @since  11.1
 	 */
@@ -103,6 +114,7 @@ class JLog
 
 	/**
 	 * Container for JLogLogger objects.
+	 *
 	 * @var    array
 	 * @since  11.1
 	 */
@@ -110,6 +122,7 @@ class JLog
 
 	/**
 	 * Lookup array for loggers.
+	 *
 	 * @var    array
 	 * @since  11.1
 	 */
@@ -178,6 +191,7 @@ class JLog
 		{
 			$options['logger'] = 'formattedtext';
 		}
+
 		$options['logger'] = strtolower($options['logger']);
 
 		// Special case - if a Closure object is sent as the callback (in case of JLogLoggerCallback)
@@ -247,7 +261,6 @@ class JLog
 			// Attempt to instantiate the logger object if it doesn't already exist.
 			if (empty($this->loggers[$signature]))
 			{
-
 				$class = 'JLogLogger' . ucfirst($this->configurations[$signature]['logger']);
 
 				if (class_exists($class))

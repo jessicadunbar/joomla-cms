@@ -60,6 +60,7 @@ class JFormFieldCheckboxes extends JFormField
 
 		// Build the checkbox field output.
 		$html[] = '<ul>';
+
 		foreach ($options as $i => $option)
 		{
 			// Initialize some option attributes.
@@ -72,6 +73,7 @@ class JFormFieldCheckboxes extends JFormField
 				$value = !is_array($this->value) ? explode(',', $this->value) : $this->value;
 				$checked = (in_array((string) $option->value, $value) ? ' checked="checked"' : '');
 			}
+
 			$class = !empty($option->class) ? ' class="' . $option->class . '"' : '';
 			$required = !empty($option->required) ? ' required="required" aria-required="true"' : '';
 			$disabled = !empty($option->disable) ? ' disabled="disabled"' : '';
@@ -86,6 +88,7 @@ class JFormFieldCheckboxes extends JFormField
 			$html[] = '<label for="' . $this->id . $i . '"' . $class . '>' . JText::_($option->text) . '</label>';
 			$html[] = '</li>';
 		}
+
 		$html[] = '</ul>';
 
 		// End the checkbox field output.
@@ -107,7 +110,6 @@ class JFormFieldCheckboxes extends JFormField
 
 		foreach ($this->element->children() as $option)
 		{
-
 			// Only add <option /> elements.
 			if ($option->getName() != 'option')
 			{

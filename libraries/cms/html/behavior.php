@@ -180,6 +180,7 @@ abstract class JHtmlBehavior
 		{
 			return;
 		}
+
 		// Include MooTools framework
 		static::framework();
 
@@ -283,8 +284,6 @@ abstract class JHtmlBehavior
 	 */
 	public static function modal($selector = 'a.modal', $params = array())
 	{
-		$document = JFactory::getDocument();
-
 		// Load the necessary files if they haven't yet been loaded
 		if (!isset(static::$loaded[__METHOD__]))
 		{
@@ -330,8 +329,7 @@ abstract class JHtmlBehavior
 		$options = JHtml::getJSObject($opt);
 
 		// Attach modal behavior to document
-		$document
-			->addScriptDeclaration(
+		JFactory::getDocument()->addScriptDeclaration(
 			"
 		window.addEvent('domready', function() {
 
@@ -438,8 +436,7 @@ abstract class JHtmlBehavior
 			tree' . $treeName . '.adopt(\'' . $id . '\');})';
 
 		// Attach tooltips to document
-		$document = JFactory::getDocument();
-		$document->addScriptDeclaration($js);
+		JFactory::getDocument()->addScriptDeclaration($js);
 
 		// Set static array
 		static::$loaded[__METHOD__][$id] = true;
@@ -462,7 +459,6 @@ abstract class JHtmlBehavior
 			return;
 		}
 
-		$document = JFactory::getDocument();
 		$tag = JFactory::getLanguage()->getTag();
 
 		JHtml::_('stylesheet', 'system/calendar-jos.css', array(' title' => JText::_('JLIB_HTML_BEHAVIOR_GREEN'), ' media' => 'all'), true);
@@ -473,8 +469,9 @@ abstract class JHtmlBehavior
 
 		if ($translation)
 		{
-			$document->addScriptDeclaration($translation);
+			JFactory::getDocument()->addScriptDeclaration($translation);
 		}
+
 		static::$loaded[__METHOD__] = true;
 	}
 
@@ -574,7 +571,6 @@ abstract class JHtmlBehavior
 			$refreshTime = 3600000;
 		}
 
-		$document = JFactory::getDocument();
 		$script = '';
 		$script .= 'function keepAlive() {';
 		$script .= '	var myAjax = new Request({method: "get", url: "index.php"}).send();';
@@ -583,7 +579,7 @@ abstract class JHtmlBehavior
 		$script .= '{ keepAlive.periodical(' . $refreshTime . '); }';
 		$script .= ');';
 
-		$document->addScriptDeclaration($script);
+		JFactory::getDocument()->addScriptDeclaration($script);
 		static::$loaded[__METHOD__] = true;
 
 		return;

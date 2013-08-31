@@ -178,7 +178,6 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 			default:
 				$query = parent::__toString();
 				break;
-
 		}
 
 		if ($this instanceof JDatabaseQueryLimitable)

@@ -356,6 +356,7 @@ abstract class JModuleHelper
 		// Apply negative selections and eliminate duplicates
 		$negId = $Itemid ? -(int) $Itemid : false;
 		$dupes = array();
+
 		for ($i = 0, $n = count($modules); $i < $n; $i++)
 		{
 			$module = &$modules[$i];
@@ -371,6 +372,7 @@ abstract class JModuleHelper
 				{
 					unset($clean[$module->id]);
 				}
+
 				continue;
 			}
 
@@ -464,6 +466,7 @@ abstract class JModuleHelper
 				{
 					$uri = JRequest::get();
 					$safeuri = new stdClass;
+
 					foreach ($cacheparams->modeparams as $key => $value)
 					{
 						// Use int filter for id/catid to clean out spamy slugs
@@ -474,6 +477,7 @@ abstract class JModuleHelper
 						}
 					}
 				}
+
 				$secureid = md5(serialize(array($safeuri, $cacheparams->method, $moduleparams)));
 				$ret = $cache->get(
 					array($cacheparams->class, $cacheparams->method),

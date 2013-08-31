@@ -43,6 +43,7 @@ class JSchemaChangeset
 	 * Folder where SQL update files will be found
 	 *
 	 * @var    string
+	 * @since  2.5
 	 */
 	protected $folder = null;
 
@@ -61,6 +62,7 @@ class JSchemaChangeset
 		$this->folder = $folder;
 		$updateFiles = $this->getUpdateFiles();
 		$updateQueries = $this->getUpdateQueries($updateFiles);
+
 		foreach ($updateQueries as $obj)
 		{
 			$this->changeItems[] = JSchemaChangeitem::getInstance($db, $obj->file, $obj->updateQuery);
@@ -101,6 +103,7 @@ class JSchemaChangeset
 	public function check()
 	{
 		$errors = array();
+
 		foreach ($this->changeItems as $item)
 		{
 			if ($item->check() === -2)
@@ -109,6 +112,7 @@ class JSchemaChangeset
 				$errors[] = $item;
 			}
 		}
+
 		return $errors;
 	}
 
@@ -122,6 +126,7 @@ class JSchemaChangeset
 	public function fix()
 	{
 		$this->check();
+
 		foreach ($this->changeItems as $item)
 		{
 			$item->fix();
@@ -138,6 +143,7 @@ class JSchemaChangeset
 	public function getStatus()
 	{
 		$result = array('unchecked' => array(), 'ok' => array(), 'error' => array(), 'skipped' => array());
+
 		foreach ($this->changeItems as $item)
 		{
 			switch ($item->checkStatus)
@@ -156,6 +162,7 @@ class JSchemaChangeset
 					break;
 			}
 		}
+
 		return $result;
 	}
 
@@ -173,6 +180,7 @@ class JSchemaChangeset
 	{
 		$updateFiles = $this->getUpdateFiles();
 		$result = new SplFileInfo(array_pop($updateFiles));
+
 		return $result->getBasename('.sql');
 	}
 
@@ -223,12 +231,14 @@ class JSchemaChangeset
 	{
 		// Hold results as array of objects
 		$result = array();
+
 		foreach ($sqlfiles as $file)
 		{
 			$buffer = file_get_contents($file);
 
 			// Create an array of queries from the sql file
 			$queries = JDatabaseDriver::splitSql($buffer);
+
 			foreach ($queries as $query)
 			{
 				if ($trimmedQuery = $this->trimQuery($query))
@@ -240,6 +250,7 @@ class JSchemaChangeset
 				}
 			}
 		}
+
 		return $result;
 	}
 

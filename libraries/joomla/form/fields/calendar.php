@@ -21,7 +21,6 @@ defined('JPATH_PLATFORM') or die;
  */
 class JFormFieldCalendar extends JFormField
 {
-
 	/**
 	 * The form field type.
 	 *
@@ -44,30 +43,37 @@ class JFormFieldCalendar extends JFormField
 
 		// Build the attributes array.
 		$attributes = array();
+
 		if ($this->element['size'])
 		{
 			$attributes['size'] = (int) $this->element['size'];
 		}
+
 		if ($this->element['maxlength'])
 		{
 			$attributes['maxlength'] = (int) $this->element['maxlength'];
 		}
+
 		if ($this->element['class'])
 		{
 			$attributes['class'] = (string) $this->element['class'];
 		}
+
 		if ((string) $this->element['readonly'] == 'true')
 		{
 			$attributes['readonly'] = 'readonly';
 		}
+
 		if ((string) $this->element['disabled'] == 'true')
 		{
 			$attributes['disabled'] = 'disabled';
 		}
+
 		if ($this->element['onchange'])
 		{
 			$attributes['onchange'] = (string) $this->element['onchange'];
 		}
+
 		if ($this->required)
 		{
 			$attributes['required'] = 'required';
@@ -98,6 +104,7 @@ class JFormFieldCalendar extends JFormField
 					// Transform the date string.
 					$this->value = $date->format('Y-m-d H:i:s', true, false);
 				}
+
 				break;
 
 			case 'USER_UTC':
@@ -111,6 +118,7 @@ class JFormFieldCalendar extends JFormField
 					// Transform the date string.
 					$this->value = $date->format('Y-m-d H:i:s', true, false);
 				}
+
 				break;
 		}
 

@@ -253,6 +253,7 @@ class JSession implements IteratorAggregate
 			{
 				$this->_state = 'expired';
 			}
+
 			return false;
 		}
 
@@ -317,6 +318,7 @@ class JSession implements IteratorAggregate
 		if (!$app->input->$method->get($token, '', 'alnum'))
 		{
 			$session = JFactory::getSession();
+
 			if ($session->isNew())
 			{
 				// Redirect to login screen.
@@ -348,6 +350,7 @@ class JSession implements IteratorAggregate
 			// @TODO : raise error
 			return null;
 		}
+
 		return session_name();
 	}
 
@@ -365,6 +368,7 @@ class JSession implements IteratorAggregate
 			// @TODO : raise error
 			return null;
 		}
+
 		return session_id();
 	}
 
@@ -481,6 +485,7 @@ class JSession implements IteratorAggregate
 		{
 			return $_SESSION[$namespace][$name];
 		}
+
 		return $default;
 	}
 
@@ -566,6 +571,7 @@ class JSession implements IteratorAggregate
 		}
 
 		$value = null;
+
 		if (isset($_SESSION[$namespace][$name]))
 		{
 			$value = $_SESSION[$namespace][$name];
@@ -708,6 +714,7 @@ class JSession implements IteratorAggregate
 	public function restart()
 	{
 		$this->destroy();
+
 		if ($this->_state !== 'destroyed')
 		{
 			// @TODO :: generated error here
@@ -733,7 +740,7 @@ class JSession implements IteratorAggregate
 	/**
 	 * Create a new session and copy variables from the old one
 	 *
-	 * @return  boolean $result true on success
+	 * @return  boolean  True on success
 	 *
 	 * @since   11.1
 	 */
@@ -795,6 +802,7 @@ class JSession implements IteratorAggregate
 	protected function _setCookieParams()
 	{
 		$cookie = session_get_cookie_params();
+
 		if ($this->_force_ssl)
 		{
 			$cookie['secure'] = true;
@@ -811,6 +819,7 @@ class JSession implements IteratorAggregate
 		{
 			$cookie['path'] = $config->get('cookie_path');
 		}
+
 		session_set_cookie_params($cookie['lifetime'], $cookie['path'], $cookie['domain'], $cookie['secure'], true);
 	}
 
@@ -826,9 +835,11 @@ class JSession implements IteratorAggregate
 	protected function _createToken($length = 32)
 	{
 		static $chars = '0123456789abcdef';
+
 		$max = strlen($chars) - 1;
 		$token = '';
 		$name = session_name();
+
 		for ($i = 0; $i < $length; ++$i)
 		{
 			$token .= $chars[(rand(0, $max))];
@@ -850,6 +861,7 @@ class JSession implements IteratorAggregate
 		++$counter;
 
 		$this->set('session.counter', $counter);
+
 		return true;
 	}
 

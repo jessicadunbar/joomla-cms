@@ -25,7 +25,6 @@ class JHtmlInstallation
 	 */
 	public static function stepbar()
 	{
-
 		// Determine if the configuration file path is writable.
 		$path = JPATH_CONFIGURATION . '/configuration.php';
 		$useftp = (file_exists($path)) ? !is_writable($path) : !is_writable(JPATH_CONFIGURATION . '/');
@@ -33,19 +32,24 @@ class JHtmlInstallation
 		$tabs = array();
 		$tabs[] = 'site';
 		$tabs[] = 'database';
+
 		if ($useftp)
 		{
 			$tabs[] = 'ftp';
 		}
+
 		$tabs[] = 'summary';
 
 		$html = array();
 		$html[] = '<ul class="nav nav-tabs">';
+
 		foreach ($tabs as $tab)
 		{
 			$html[] = static::getTab($tab, $tabs);
 		}
+
 		$html[] = '</ul>';
+
 		return implode('', $html);
 	}
 
@@ -58,7 +62,6 @@ class JHtmlInstallation
 	 */
 	public static function stepbarlanguages()
 	{
-
 		$tabs = array();
 		$tabs[] = 'languages';
 		$tabs[] = 'defaultlanguage';
@@ -66,10 +69,12 @@ class JHtmlInstallation
 
 		$html = array();
 		$html[] = '<ul class="nav nav-tabs">';
+
 		foreach ($tabs as $tab)
 		{
 			$html[] = static::getTab($tab, $tabs);
 		}
+
 		$html[] = '</ul>';
 
 		return implode('', $html);

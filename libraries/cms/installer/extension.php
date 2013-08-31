@@ -62,7 +62,7 @@ class JInstallerExtension extends JObject
 	/**
 	 * The group name of the plugin. Not used for other known extension types (only plugins)
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  3.1
 	 */
 	public $group = '';
@@ -70,7 +70,7 @@ class JInstallerExtension extends JObject
 	/**
 	 * An object representation of the manifest file stored metadata
 	 *
-	 * @var object
+	 * @var    object
 	 * @since  3.1
 	 */
 	public $manifest_cache = null;
@@ -88,7 +88,7 @@ class JInstallerExtension extends JObject
 	 *
 	 * @param   SimpleXMLElement  $element  A SimpleXMLElement from which to load data from
 	 *
-	 * @since  3.1
+	 * @since   3.1
 	 */
 	public function __construct(SimpleXMLElement $element = null)
 	{
@@ -117,6 +117,7 @@ class JInstallerExtension extends JObject
 					{
 						$this->client_id = $tmp_client_id->id;
 					}
+
 					break;
 
 				case 'plugin':
@@ -131,12 +132,15 @@ class JInstallerExtension extends JObject
 						$this->client_id = JApplicationHelper::getClientInfo($this->client, 1);
 						$this->client_id = $this->client_id->id;
 					}
+
 					if ($element->attributes()->group)
 					{
 						$this->group = (string) $element->attributes()->group;
 					}
+
 					break;
 			}
+
 			$this->filename = (string) $element;
 		}
 	}

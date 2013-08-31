@@ -276,6 +276,7 @@ class JFilterInput
 							$source[$key] = $this->_remove($this->_decode($value));
 						}
 					}
+
 					$result = $source;
 				}
 				else
@@ -292,6 +293,7 @@ class JFilterInput
 						$result = $source;
 					}
 				}
+
 				break;
 		}
 
@@ -478,12 +480,14 @@ class JFilterInput
 					{
 						$attribEnd = $nextSpace - 1;
 					}
+
 					// If there is an ending, use this, if not, do not worry.
 					if ($attribEnd > 0)
 					{
 						$fromSpace = substr($fromSpace, $attribEnd + 1);
 					}
 				}
+
 				if (strpos($fromSpace, '=') !== false)
 				{
 					// If the attribute value is wrapped in quotes we need to grab the substring from
@@ -629,6 +633,7 @@ class JFilterInput
 				{
 					$attrSubSet[1] = substr($attrSubSet[1], 1, (strlen($attrSubSet[1]) - 2));
 				}
+
 				// Strip slashes
 				$attrSubSet[1] = stripslashes($attrSubSet[1]);
 			}

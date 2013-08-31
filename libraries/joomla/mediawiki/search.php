@@ -18,7 +18,6 @@ defined('JPATH_PLATFORM') or die;
  */
 class JMediawikiSearch extends JMediawikiObject
 {
-
 	/**
      * Method to perform a full text search.
      *

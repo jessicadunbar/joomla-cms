@@ -241,6 +241,7 @@ abstract class JFactory
 	 * @return  JCacheController object
 	 *
 	 * @see     JCache
+	 * @since   11.1
 	 */
 	public static function getCache($group = '', $handler = 'callback', $storage = null)
 	{
@@ -249,6 +250,7 @@ abstract class JFactory
 		{
 			return self::$cache[$hash];
 		}
+
 		$handler = ($handler == 'function') ? 'callback' : $handler;
 
 		$options = array('defaultgroup' => $group);
@@ -323,6 +325,7 @@ abstract class JFactory
 		{
 			self::$mailer = self::createMailer();
 		}
+
 		$copy = clone self::$mailer;
 
 		return $copy;
@@ -608,6 +611,7 @@ abstract class JFactory
 			{
 				header('HTTP/1.1 500 Internal Server Error');
 			}
+
 			jexit('Database Error: ' . $e->getMessage());
 		}
 

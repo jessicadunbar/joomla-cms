@@ -18,7 +18,6 @@ defined('JPATH_PLATFORM') or die;
  */
 class JMediawikiLinks extends JMediawikiObject
 {
-
 	/**
      * Method to return all links from the given page(s).
      *

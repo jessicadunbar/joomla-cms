@@ -19,12 +19,12 @@ defined('JPATH_PLATFORM') or die;
 class JHttpFactory
 {
 	/**
-	 * method to receive Http instance.
+	 * Method to receive an instance of JHttp.
 	 *
 	 * @param   JRegistry  $options   Client options object.
 	 * @param   mixed      $adapters  Adapter (string) or queue of adapters (array) to use for communication.
 	 *
-	 * @return  JHttp      Joomla Http class
+	 * @return  JHttp      Joomla HTTP class
 	 *
 	 * @since   12.1
 	 */
@@ -34,16 +34,17 @@ class JHttpFactory
 		{
 			$options = new JRegistry;
 		}
+
 		return new JHttp($options, self::getAvailableDriver($options, $adapters));
 	}
 
 	/**
-	 * Finds an available http transport object for communication
+	 * Finds an available HTTP transport object for communication
 	 *
 	 * @param   JRegistry  $options  Option for creating http transport object
 	 * @param   mixed      $default  Adapter (string) or queue of adapters (array) to use
 	 *
-	 * @return  JHttpTransport Interface sub-class
+	 * @return  JHttpTransport  Interface sub-class
 	 *
 	 * @since   12.1
 	 */
@@ -58,11 +59,13 @@ class JHttpFactory
 			settype($default, 'array');
 			$availableAdapters = $default;
 		}
+
 		// Check if there is available http transport adapters
 		if (!count($availableAdapters))
 		{
 			return false;
 		}
+
 		foreach ($availableAdapters as $adapter)
 		{
 			$class = 'JHttpTransport' . ucfirst($adapter);
@@ -72,11 +75,12 @@ class JHttpFactory
 				return new $class($options);
 			}
 		}
+
 		return false;
 	}
 
 	/**
-	 * Get the http transport handlers
+	 * Get the HTTP transport handlers
 	 *
 	 * @return  array  An array of available transport handlers
 	 *
@@ -86,6 +90,7 @@ class JHttpFactory
 	{
 		$names = array();
 		$iterator = new DirectoryIterator(__DIR__ . '/transport');
+
 		foreach ($iterator as $file)
 		{
 			$fileName = $file->getFilename();

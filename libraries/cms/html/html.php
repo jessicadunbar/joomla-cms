@@ -980,9 +980,7 @@ abstract class JHtml
 			// Only display the triggers once for each control.
 			if (!in_array($id, $done))
 			{
-				$document = JFactory::getDocument();
-				$document
-					->addScriptDeclaration(
+				JFactory::getDocument()->addScriptDeclaration(
 					'window.addEvent(\'domready\', function() {Calendar.setup({
 				// Id of the input field
 				inputField: "' . $id . '",
@@ -998,6 +996,7 @@ abstract class JHtml
 				);
 				$done[] = $id;
 			}
+
 			return '<div class="input-append"><input type="text" class="hasTooltip" title="' . (0 !== (int) $value ? static::_('date', $value, null, null) : '')
 				. '" name="' . $name . '" id="' . $id . '" value="' . htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '" ' . $attribs . ' />'
 				. '<button type="button" class="btn" id="' . $id . '_img"><i class="icon-calendar"></i></button></div>';

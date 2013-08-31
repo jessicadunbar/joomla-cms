@@ -187,7 +187,6 @@ abstract class JModelForm extends JModelLegacy
 
 			// Load the data into the form after the plugins have operated.
 			$form->bind($data);
-
 		}
 		catch (Exception $e)
 		{

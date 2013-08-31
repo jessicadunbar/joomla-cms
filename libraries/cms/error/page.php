@@ -38,7 +38,6 @@ class JErrorPage
 			{
 				// We're probably in an CLI environment
 				exit($error->getMessage());
-				$app->close(0);
 			}
 
 			$config = JFactory::getConfig();
@@ -53,6 +52,7 @@ class JErrorPage
 			{
 				ob_end_clean();
 			}
+
 			$document->setTitle(JText::_('Error') . ': ' . $error->getCode());
 			$data = $document->render(
 				false,

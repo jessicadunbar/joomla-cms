@@ -121,6 +121,7 @@ class JFormFieldColor extends JFormField
 					$html[] = '<option>-</option>';
 				}
 			}
+
 			$html[] = '</select>';
 
 			return implode('', $html);

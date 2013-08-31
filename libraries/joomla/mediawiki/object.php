@@ -18,7 +18,6 @@ defined('JPATH_PLATFORM') or die;
  */
 abstract class JMediawikiObject
 {
-
 	/**
 	 * @var    JRegistry  Options for the MediaWiki object.
 	 * @since  12.3
@@ -103,11 +102,12 @@ abstract class JMediawikiObject
 	/**
      * Method to validate response for errors
      *
-     * @param   JHttpresponse  $response  reponse from the mediawiki server
+     * @param   SimpleXMLElement  $response  XML formatted response from the MediaWiki server
      *
      * @return  Object
      *
      * @since   12.3
+	 * @throws  DomainException
      */
 	public function validateResponse($response)
 	{
@@ -125,5 +125,4 @@ abstract class JMediawikiObject
 
 		return $xml;
 	}
-
 }

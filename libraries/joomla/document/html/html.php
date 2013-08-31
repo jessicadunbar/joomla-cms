@@ -191,7 +191,6 @@ class JDocumentHTML extends JDocument
 	 */
 	public function mergeHeadData($data)
 	{
-
 		if (empty($data) || !is_array($data))
 		{
 			return;

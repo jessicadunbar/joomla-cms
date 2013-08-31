@@ -54,7 +54,7 @@ class JCaptcha extends JObject
 	/**
 	 * Editor Plugin name
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  2.5
 	 */
 	private $_name;
@@ -72,7 +72,7 @@ class JCaptcha extends JObject
 	 * @param   string  $captcha  The editor to use.
 	 * @param   array   $options  Associative array of options.
 	 *
-	 * @since 2.5
+	 * @since   2.5
 	 */
 	public function __construct($captcha, $options)
 	{
@@ -89,7 +89,7 @@ class JCaptcha extends JObject
 	 *
 	 * @return  JCaptcha  Instance of this class.
 	 *
-	 * @since 2.5
+	 * @since   2.5
 	 */
 	public static function getInstance($captcha, array $options = array())
 	{
@@ -220,10 +220,12 @@ class JCaptcha extends JObject
 
 		// Get the plugin
 		$plugin = JPluginHelper::getPlugin('captcha', $this->_name);
+
 		if (!$plugin)
 		{
 			throw new RuntimeException(JText::sprintf('JLIB_CAPTCHA_ERROR_PLUGIN_NOT_FOUND', $name));
 		}
+
 		$params = new JRegistry($plugin->params);
 		$plugin->params = $params;
 

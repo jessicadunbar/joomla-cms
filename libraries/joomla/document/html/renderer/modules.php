@@ -38,6 +38,7 @@ class JDocumentRendererModules extends JDocumentRenderer
 		{
 			$buffer .= $renderer->render($mod, $params, $content);
 		}
+
 		return $buffer;
 	}
 }

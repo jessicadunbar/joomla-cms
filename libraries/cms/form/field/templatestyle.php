@@ -61,10 +61,12 @@ class JFormFieldTemplatestyle extends JFormFieldGroupedList
 			->where('s.client_id = ' . (int) $client->id)
 			->order('template')
 			->order('title');
+
 		if ($template)
 		{
 			$query->where('s.template = ' . $db->quote($template));
 		}
+
 		$query->join('LEFT', '#__extensions as e on e.element=s.template')
 			->where('e.enabled=1')
 			->where($db->quoteName('e.type') . '=' . $db->quote('template'));

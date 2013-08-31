@@ -273,6 +273,7 @@ class JViewLegacy extends JObject
 					$this->$key = $val;
 				}
 			}
+
 			return true;
 		}
 
@@ -286,6 +287,7 @@ class JViewLegacy extends JObject
 					$this->$key = $val;
 				}
 			}
+
 			return true;
 		}
 
@@ -398,7 +400,6 @@ class JViewLegacy extends JObject
 				$result = $this->_models[$model]->$method();
 				return $result;
 			}
-
 		}
 
 		// Degrade to JObject::get
@@ -422,6 +423,7 @@ class JViewLegacy extends JObject
 		{
 			$name = $this->_defaultModel;
 		}
+
 		return $this->_models[strtolower($name)];
 	}
 
@@ -497,6 +499,7 @@ class JViewLegacy extends JObject
 		{
 			$this->_defaultModel = $name;
 		}
+
 		return $model;
 	}
 
@@ -793,6 +796,7 @@ class JViewLegacy extends JObject
 				$filename = strtolower($parts['name']) . '.php';
 				break;
 		}
+
 		return $filename;
 	}
 }

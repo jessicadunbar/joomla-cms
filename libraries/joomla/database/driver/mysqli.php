@@ -525,6 +525,7 @@ class JDatabaseDriverMysqli extends JDatabaseDriver
 				// Avoid warning if result already freed by third-party library
 				@$this->freeResult();
 			}
+
 			$memoryBefore = memory_get_usage();
 		}
 
@@ -542,6 +543,7 @@ class JDatabaseDriverMysqli extends JDatabaseDriver
 			{
 				$this->callStacks[] = debug_backtrace();
 			}
+
 			$this->callStacks[count($this->callStacks) - 1][0]['memory'] = array($memoryBefore, memory_get_usage(), is_object($this->cursor) ? $this->getNumRows() : null);
 		}
 

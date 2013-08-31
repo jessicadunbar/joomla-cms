@@ -80,7 +80,6 @@ class JDocumentOpensearch extends JDocument
 		{
 			if (file_exists($dir . '/favicon.ico'))
 			{
-
 				$path = str_replace(JPATH_BASE . '/', '', $dir);
 				$path = str_replace('\\', '/', $path);
 
@@ -154,6 +153,7 @@ class JDocumentOpensearch extends JDocument
 			{
 				$elUrl->setAttribute('rel', $url->rel);
 			}
+
 			$elUrl->setAttribute('template', $url->template);
 			$elOs->appendChild($elUrl);
 		}

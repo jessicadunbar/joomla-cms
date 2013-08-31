@@ -55,16 +55,19 @@ class JUpdaterExtension extends JUpdateAdapter
 			// Don't do anything
 			case 'UPDATES':
 				break;
+
 			default:
 				if (in_array($name, $this->updatecols))
 				{
 					$name = strtolower($name);
 					$this->current_update->$name = '';
 				}
+
 				if ($name == 'TARGETPLATFORM')
 				{
 					$this->current_update->targetplatform = $attrs;
 				}
+
 				break;
 		}
 	}
@@ -101,6 +104,7 @@ class JUpdaterExtension extends JUpdateAdapter
 				{
 					// Target platform isn't a valid field in the update table so unset it to prevent J! from trying to store it
 					unset($this->current_update->targetplatform);
+
 					if (isset($this->latest))
 					{
 						if (version_compare($this->current_update->version, $this->latest->version, '>') == 1)
@@ -113,7 +117,9 @@ class JUpdaterExtension extends JUpdateAdapter
 						$this->latest = $this->current_update;
 					}
 				}
+
 				break;
+
 			case 'UPDATES':
 				// :D
 				break;
@@ -134,6 +140,7 @@ class JUpdaterExtension extends JUpdateAdapter
 	protected function _characterData($parser, $data)
 	{
 		$tag = $this->_getLastTag();
+
 		/**
 		 * @todo remove code
 		 * if(!isset($this->$tag->_data)) $this->$tag->_data = '';
@@ -160,12 +167,14 @@ class JUpdaterExtension extends JUpdateAdapter
 		$url = $options['location'];
 		$this->_url = &$url;
 		$this->updateSiteId = $options['update_site_id'];
+
 		if (substr($url, -4) != '.xml')
 		{
 			if (substr($url, -1) != '/')
 			{
 				$url .= '/';
 			}
+
 			$url .= 'extension.xml';
 		}
 
@@ -210,7 +219,9 @@ class JUpdaterExtension extends JUpdateAdapter
 			$app->enqueueMessage(JText::sprintf('JLIB_UPDATER_ERROR_EXTENSION_PARSE_URL', $url), 'warning');
 			return false;
 		}
+
 		xml_parser_free($this->xmlParser);
+
 		if (isset($this->latest))
 		{
 			if (isset($this->latest->client) && strlen($this->latest->client))
@@ -229,15 +240,18 @@ class JUpdaterExtension extends JUpdateAdapter
 				{
 					$byName = true;
 				}
+
 				$this->latest->client_id = JApplicationHelper::getClientInfo($this->latest->client, $byName)->id;
 				unset($this->latest->client);
 			}
+
 			$updates = array($this->latest);
 		}
 		else
 		{
 			$updates = array();
 		}
+
 		return array('update_sites' => array(), 'updates' => $updates);
 	}
 }

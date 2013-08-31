@@ -536,6 +536,7 @@ class JDatabaseDriverOracle extends JDatabaseDriverPdo
 		while ($startPos < $n)
 		{
 			$ip = strpos($query, $prefix, $startPos);
+
 			if ($ip === false)
 			{
 				break;
@@ -563,31 +564,39 @@ class JDatabaseDriverOracle extends JDatabaseDriverPdo
 			{
 				$k = strpos($query, $quoteChar, $j);
 				$escaped = false;
+
 				if ($k === false)
 				{
 					break;
 				}
+
 				$l = $k - 1;
+
 				while ($l >= 0 && $query{$l} == '\\')
 				{
 					$l--;
 					$escaped = !$escaped;
 				}
+
 				if ($escaped)
 				{
 					$j = $k + 1;
 					continue;
 				}
+
 				break;
 			}
+
 			if ($k === false)
 			{
 				// Error in the query - no end quote; ignore it
 				break;
 			}
+
 			$literal .= substr($query, $startPos, $k - $startPos + 1);
 			$startPos = $k + 1;
 		}
+
 		if ($startPos < $n)
 		{
 			$literal .= substr($query, $startPos, $n - $startPos);

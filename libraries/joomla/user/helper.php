@@ -358,6 +358,7 @@ abstract class JUserHelper
 				{
 					$context .= substr($binary, 0, ($i > 16 ? 16 : $i));
 				}
+
 				for ($i = $length; $i > 0; $i >>= 1)
 				{
 					$context .= ($i & 1) ? chr(0) : $plaintext[0];
@@ -373,10 +374,12 @@ abstract class JUserHelper
 					{
 						$new .= $salt;
 					}
+
 					if ($i % 7)
 					{
 						$new .= $plaintext;
 					}
+
 					$new .= ($i & 1) ? substr($binary, 0, 16) : $plaintext;
 					$binary = self::_bin(md5($new));
 				}
@@ -392,6 +395,7 @@ abstract class JUserHelper
 					{
 						$j = 5;
 					}
+
 					$p[] = self::_toAPRMD5((ord($binary[$i]) << 16) | (ord($binary[$k]) << 8) | (ord($binary[$j])), 5);
 				}
 
@@ -438,6 +442,7 @@ abstract class JUserHelper
 				{
 					return substr(md5(mt_rand()), 0, 2);
 				}
+
 				break;
 
 			case 'crypt-md5':
@@ -449,6 +454,7 @@ abstract class JUserHelper
 				{
 					return '$1$' . substr(md5(mt_rand()), 0, 8) . '$';
 				}
+
 				break;
 
 			case 'crypt-blowfish':
@@ -460,6 +466,7 @@ abstract class JUserHelper
 				{
 					return '$2$' . substr(md5(mt_rand()), 0, 12) . '$';
 				}
+
 				break;
 
 			case 'ssha':
@@ -471,6 +478,7 @@ abstract class JUserHelper
 				{
 					return mhash_keygen_s2k(MHASH_SHA1, $plaintext, substr(pack('h*', md5(mt_rand())), 0, 8), 4);
 				}
+
 				break;
 
 			case 'smd5':
@@ -482,6 +490,7 @@ abstract class JUserHelper
 				{
 					return mhash_keygen_s2k(MHASH_MD5, $plaintext, substr(pack('h*', md5(mt_rand())), 0, 8), 4);
 				}
+
 				break;
 
 			case 'aprmd5': /* 64 characters that are valid for APRMD5 passwords. */
@@ -499,8 +508,10 @@ abstract class JUserHelper
 					{
 						$salt .= $APRMD5{rand(0, 63)};
 					}
+
 					return $salt;
 				}
+
 				break;
 
 			default:
@@ -510,6 +521,7 @@ abstract class JUserHelper
 				{
 					$salt = $seed;
 				}
+
 				return $salt;
 				break;
 		}
@@ -572,6 +584,7 @@ abstract class JUserHelper
 			$aprmd5 .= $APRMD5[$value & 0x3f];
 			$value >>= 6;
 		}
+
 		return $aprmd5;
 	}
 
@@ -594,6 +607,7 @@ abstract class JUserHelper
 			$tmp = sscanf(substr($hex, $i, 2), '%x');
 			$bin .= chr(array_shift($tmp));
 		}
+
 		return $bin;
 	}
 }

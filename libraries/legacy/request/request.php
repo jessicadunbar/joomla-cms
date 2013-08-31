@@ -102,10 +102,12 @@ class JRequest
 	{
 		// Ensure hash and type are uppercase
 		$hash = strtoupper($hash);
+
 		if ($hash === 'METHOD')
 		{
 			$hash = strtoupper($_SERVER['REQUEST_METHOD']);
 		}
+
 		$type = strtoupper($type);
 		$sig = $hash . $type . $mask;
 
@@ -534,7 +536,6 @@ class JRequest
 		if ($mask & 2)
 		{
 			// If the allow raw flag is set, do not modify the variable
-			$var = $var;
 		}
 		elseif ($mask & 4)
 		{
@@ -549,6 +550,7 @@ class JRequest
 			$noHtmlFilter = JFilterInput::getInstance();
 			$var = $noHtmlFilter->clean($var, $type);
 		}
+
 		return $var;
 	}
 }

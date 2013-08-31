@@ -89,7 +89,6 @@ class JXMLElement extends SimpleXMLElement
 
 				// Add the newline and indentation to go along with the close tag
 				$out .= ($compressed) ? '' : "\n" . str_repeat($indent, $level);
-
 			}
 			elseif ((string) $this)
 			{

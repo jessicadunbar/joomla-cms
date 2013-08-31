@@ -14,7 +14,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @package     Joomla.Platform
  * @subpackage  Google
- * @since       1234
+ * @since       12.3
  */
 class JGoogleDataPlus extends JGoogleData
 {
@@ -42,7 +42,7 @@ class JGoogleDataPlus extends JGoogleData
 	 * @param   JRegistry    $options  Google options object
 	 * @param   JGoogleAuth  $auth     Google data http client object
 	 *
-	 * @since   1234
+	 * @since   12.3
 	 */
 	public function __construct(JRegistry $options = null, JGoogleAuth $auth = null)
 	{
@@ -75,6 +75,7 @@ class JGoogleDataPlus extends JGoogleData
 				{
 					$this->people = new JGoogleDataPlusPeople($this->options, $this->auth);
 				}
+
 				return $this->people;
 
 			case 'activities':
@@ -82,6 +83,7 @@ class JGoogleDataPlus extends JGoogleData
 				{
 					$this->activities = new JGoogleDataPlusActivities($this->options, $this->auth);
 				}
+
 				return $this->activities;
 
 			case 'comments':
@@ -89,6 +91,7 @@ class JGoogleDataPlus extends JGoogleData
 				{
 					$this->comments = new JGoogleDataPlusComments($this->options, $this->auth);
 				}
+
 				return $this->comments;
 		}
 	}

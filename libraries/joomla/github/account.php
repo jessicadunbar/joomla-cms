@@ -109,12 +109,14 @@ class JGithubAccount extends JGithubObject
 			$scopeData = $scopes;
 			$scopesCount++;
 		}
+
 		if (!empty($addScopes))
 		{
 			$scope = 'add_scopes';
 			$scopeData = $addScopes;
 			$scopesCount++;
 		}
+
 		if (!empty($removeScopes))
 		{
 			$scope = 'remove_scopes';

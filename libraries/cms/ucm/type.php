@@ -120,6 +120,5 @@ class JUcmType implements JUcm
 		}
 
 		return $id;
-
 	}
 }

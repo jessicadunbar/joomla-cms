@@ -1040,6 +1040,7 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 		{
 			$constraints = $this->getTableConstraints($oldTable);
 		}
+
 		if (!empty($constraints))
 		{
 			$this->renameConstraints($constraints, $prefix, $backup);
