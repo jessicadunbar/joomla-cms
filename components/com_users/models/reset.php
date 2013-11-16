@@ -171,10 +171,24 @@ class UsersModelReset extends JModelForm
 			return false;
 		}
 
+		// The Joomla user plugin allows you to use weaker passwords if necessary.
+		$joomlaPluginEnabled = JPluginHelper::isEnabled('user', 'joomla');
+
+		if ($joomlaPluginEnabled)
+		{
+			$userPlugin = JPluginHelper::getPlugin('user', 'joomla');
+			$userPluginParams = new JRegistry($userPlugin->params);
+			JPluginHelper::importPlugin('user', 'joomla');
+			$defaultEncryption = PlgUserJoomla::setDefaultEncryption($userPluginParams);
+		}
+		else
+		{
+			$defaultEncryption = 'bcrypt';
+		}
+
 		// Generate the new password hash.
 		$salt = JUserHelper::genRandomPassword(32);
-		$crypted = JUserHelper::getCryptedPassword($data['password1'], $salt);
-		$password = $crypted . ':' . $salt;
+		$password = JUserHelper::getCryptedPassword($data['password1'], $salt, $defaultEncryption);
 
 		// Update the user object.
 		$user->password = $password;
@@ -260,13 +274,18 @@ class UsersModelReset extends JModelForm
 
 		$parts = explode(':', $user->activation);
 		$crypt = $parts[0];
+
 		if (!isset($parts[1]))
 		{
 			$this->setError(JText::_('COM_USERS_USER_NOT_FOUND'));
 			return false;
 		}
+
 		$salt = $parts[1];
 		$testcrypt = JUserHelper::getCryptedPassword($data['token'], $salt, 'md5-hex');
+
+		// Make sure you comparison is without any appended salt since some encryption methods do append and some do not.
+		$testcrypt = strstr($testcrypt, ':', true);
 
 		// Verify the token
 		if (!($crypt == $testcrypt))

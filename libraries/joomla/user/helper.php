@@ -431,7 +431,7 @@ abstract class JUserHelper
 				return '$apr1$' . $salt . '$' . implode('', $p) . self::_toAPRMD5(ord($binary[11]), 3);
 
 			case 'md5-hex':
-				$encrypted = ($salt) ? md5($plaintext . $salt) : md5($plaintext);
+				$encrypted = ($salt) ? md5($plaintext . $salt) . ':' . $salt : md5($plaintext);
 
 				return ($show_encrypt) ? '{MD5}' . $encrypted : $encrypted;
 
@@ -486,7 +486,7 @@ abstract class JUserHelper
 	 *          the type used by the PHP PASSWORD_DEFAULT constant until 5.5 is the minimum
 	 *          version required. At that point the default will be PASSWORD_DEFAULT.
 	 */
-	public static function getSalt($encryption = 'md5-hex', $seed = '', $plaintext = '')
+	public static function getSalt($encryption = 'bcrypt', $seed = '', $plaintext = '')
 	{
 		// Encrypt the password.
 		switch ($encryption)
